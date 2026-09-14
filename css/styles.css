@@ -1,0 +1,175 @@
+/* ==========================================================================
+   Hemisphere Hotels & Resorts - Vanilla CSS Architecture
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-brand-charcoal: #1C1B1A;
+  --color-brand-gold:     #C5A880;
+  --color-brand-sand:     #E8E2D9;
+  --color-brand-cream:    #F5F2EB;
+  --color-brand-stone:    #D1C7BD;
+  --color-brand-green:    #2D4B44;
+  --color-brand-slate:    #274457;
+  --color-bg:             #FAF8F5;
+  --color-surface:        #FFFFFF;
+  --color-surface-subtle: #F5F2EB;
+  --color-text-primary:   #1C1B1A;
+  --color-text-secondary: #635F5B;
+  --color-text-muted:     #8E8A84;
+  --color-text-inverse:   #FFFFFF;
+  --color-border:         #E4DDD4;
+  --color-border-subtle:  #EFECE6;
+  
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-smooth: 450ms;
+}
+
+/* Base resets & Lenis Smooth Scroll Compatibility */
+html {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  scroll-behavior: auto !important;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography Utility */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+.tracking-luxury {
+  letter-spacing: 0.25em;
+}
+
+/* Film Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Circular Transition Gateway */
+.circular-portal {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  will-change: clip-path;
+  clip-path: circle(0% at 50% 50%);
+}
+
+/* Viewport Scroll Entrance Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s var(--ease-luxury), transform 0.75s var(--ease-luxury);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s var(--ease-luxury), transform 0.8s var(--ease-luxury);
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s var(--ease-luxury), transform 0.8s var(--ease-luxury);
+  will-change: opacity, transform;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94) translateY(24px);
+  transition: opacity 0.75s var(--ease-luxury), transform 0.75s var(--ease-luxury);
+  will-change: opacity, transform;
+}
+
+.in-view {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Stagger delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Hero Slider Wipe Animations */
+.slide-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.65s cubic-bezier(0.65, 0, 0.2, 1), opacity 0.3s ease;
+  z-index: 1;
+}
+
+.slide-item.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+  transform: translateX(0);
+}
+
+.slide-item.slide-prev {
+  transform: translateX(-100%);
+}
+
+.slide-item.slide-next {
+  transform: translateX(100%);
+}
+
+/* Image Hover Zoom */
+.luxury-image-zoom {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .luxury-image-zoom {
+  transform: scale(1.06);
+}
+
+/* Preloader Curtain Exit */
+#preloader.preloader-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}

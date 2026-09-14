@@ -1,0 +1,25 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editor & IDE Directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs and Runtime Data
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Optional future dependencies or build outputs
+node_modules/
+dist/
+.env
+.env.local
