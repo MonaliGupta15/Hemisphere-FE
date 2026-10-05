@@ -521,11 +521,20 @@
           <p class="text-xs text-text-secondary mt-2">Whether you crave untamed tropical coastline or vibrant urban culture, compare our addresses at a glance.</p>
         </div>
 
-        <div class="table-container bg-surface border border-border rounded-sm shadow-md overflow-hidden">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="bg-brand-charcoal text-white uppercase tracking-luxury border-b border-border">
-                <th class="p-4 sm:p-5 font-medium">Property</th>
+        <div class="bg-surface border border-border rounded-sm shadow-md overflow-hidden">
+          <!-- Mobile Scroll Indicator Banner -->
+          <div class="sm:hidden flex items-center justify-between px-4 py-2.5 bg-surface-subtle border-b border-border/80 text-[11px] text-text-muted">
+            <div class="flex items-center gap-1.5 text-brand-gold font-medium">
+              <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 animate-pulse"></i>
+              <span class="uppercase tracking-luxury text-[10px]">Swipe to compare properties</span>
+            </div>
+            <span class="text-[10px] text-text-muted uppercase tracking-luxury">6 Columns</span>
+          </div>
+          <div class="table-container overflow-x-auto w-full">
+            <table class="w-full min-w-[720px] text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-brand-charcoal text-white uppercase tracking-luxury border-b border-border">
+                  <th class="p-4 sm:p-5 font-medium whitespace-nowrap">Property</th>
                 <th class="p-4 sm:p-5 font-medium">Setting</th>
                 <th class="p-4 sm:p-5 font-medium">Room Inventory</th>
                 <th class="p-4 sm:p-5 font-medium">Highlight Venues</th>
@@ -577,6 +586,7 @@
             </tbody>
           </table>
         </div>
+      </div>
       </div>
     </section>
 

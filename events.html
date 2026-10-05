@@ -265,11 +265,20 @@
             <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-brand-gold whitespace-nowrap transition-all cursor-pointer" data-tab-filter="damai-lagoon">Damai Lagoon</button>
           </div>
         </div>
-        <div class="table-container bg-surface border border-border rounded-sm shadow-md overflow-hidden mb-16">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="bg-brand-charcoal text-white uppercase tracking-luxury border-b border-border">
-                <th class="p-4 sm:p-5 font-medium">Venue Name</th>
+        <div class="bg-surface border border-border rounded-sm shadow-md overflow-hidden mb-16">
+          <!-- Mobile Scroll Indicator Banner -->
+          <div class="sm:hidden flex items-center justify-between px-4 py-2.5 bg-surface-subtle border-b border-border/80 text-[11px] text-text-muted">
+            <div class="flex items-center gap-1.5 text-brand-gold font-medium">
+              <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 animate-pulse"></i>
+              <span class="uppercase tracking-luxury text-[10px]">Swipe to view full matrix</span>
+            </div>
+            <span class="text-[10px] text-text-muted uppercase tracking-luxury">7 Columns</span>
+          </div>
+          <div class="table-container overflow-x-auto w-full">
+            <table class="w-full min-w-[780px] text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-brand-charcoal text-white uppercase tracking-luxury border-b border-border">
+                  <th class="p-4 sm:p-5 font-medium whitespace-nowrap">Venue Name</th>
                 <th class="p-4 sm:p-5 font-medium">Hotel Location</th>
                 <th class="p-4 sm:p-5 font-medium">Area (m²)</th>
                 <th class="p-4 sm:p-5 font-medium">Theatre</th>
@@ -336,6 +345,7 @@
             </tbody>
           </table>
         </div>
+      </div>
 
         <!-- Weddings & Celebrations Highlight -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-8 border-t border-border/80">

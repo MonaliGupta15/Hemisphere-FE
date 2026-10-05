@@ -265,10 +265,30 @@ article[data-tab-item]:hover,
   pointer-events: auto;
 }
 
-/* Custom Table scroll */
+/* Custom Table Responsive Scroll */
 .table-container {
-  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto !important;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.table-container::-webkit-scrollbar {
+  height: 5px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: rgba(18, 18, 18, 0.05);
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.45);
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.75);
 }
 
 /* Hide scrollbar utility */
