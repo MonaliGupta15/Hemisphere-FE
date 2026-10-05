@@ -372,5 +372,17 @@ body {
   padding-top: env(safe-area-inset-top, 0px);
 }
 
+/* Footer Back to Top Button */
+.back-to-top-btn {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: all 0.25s ease;
+}
+.back-to-top-btn:hover span:first-child {
+  color: var(--color-brand-gold);
+}
+
+
 
 

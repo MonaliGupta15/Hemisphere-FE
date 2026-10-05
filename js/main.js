@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals()
   initForms()
   initActiveNav()
+  initBackToTop()
   initScrollAnimations()
   initCircularTransitions()
 })
@@ -754,4 +755,28 @@ function initActiveNav() {
     }
   })
 }
+
+/* ==========================================================================
+   17. Back to Top Smooth Scroll
+   ========================================================================== */
+function initBackToTop() {
+  const backToTopBtns = document.querySelectorAll('.back-to-top-btn, #back-to-top-btn')
+  backToTopBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.scrollTo(0, {
+          duration: 1.1,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        })
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })
+      }
+    })
+  })
+}
+
 
