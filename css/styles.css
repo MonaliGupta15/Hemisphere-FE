@@ -97,45 +97,98 @@ section[id], article[id], div[id] {
   clip-path: circle(0% at 50% 50%);
 }
 
-/* Viewport Scroll Entrance Animations */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.75s var(--ease-luxury), transform 0.75s var(--ease-luxury);
+/* Viewport Scroll Entrance Animations (Continuous bi-directional replay) */
+.reveal-on-scroll,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0 !important;
   will-change: opacity, transform;
+  transition: none !important;
+  transition-delay: 0s !important;
+}
+
+.reveal-on-scroll,
+.reveal-on-scroll.from-below {
+  transform: translateY(32px) !important;
+}
+
+.reveal-on-scroll.from-above {
+  transform: translateY(-32px) !important;
 }
 
 .reveal-left {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s var(--ease-luxury), transform 0.8s var(--ease-luxury);
-  will-change: opacity, transform;
+  transform: translateX(-36px) !important;
 }
 
 .reveal-right {
-  opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 0.8s var(--ease-luxury), transform 0.8s var(--ease-luxury);
-  will-change: opacity, transform;
+  transform: translateX(36px) !important;
 }
 
 .reveal-scale {
-  opacity: 0;
-  transform: scale(0.94) translateY(24px);
-  transition: opacity 0.75s var(--ease-luxury), transform 0.75s var(--ease-luxury);
-  will-change: opacity, transform;
+  transform: scale(0.96) translateY(24px) !important;
 }
 
+/* In-view state: smooth luxury entrance every time viewport is entered */
+.reveal-on-scroll.in-view,
+.reveal-left.in-view,
+.reveal-right.in-view,
+.reveal-scale.in-view,
 .in-view {
   opacity: 1 !important;
   transform: translate(0, 0) scale(1) !important;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Stagger delays */
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
+/* Stagger delays - active only during in-view entrance */
+.in-view.delay-50 { transition-delay: 50ms !important; }
+.in-view.delay-100 { transition-delay: 100ms !important; }
+.in-view.delay-150 { transition-delay: 150ms !important; }
+.in-view.delay-200 { transition-delay: 200ms !important; }
+.in-view.delay-250 { transition-delay: 250ms !important; }
+.in-view.delay-300 { transition-delay: 300ms !important; }
+.in-view.delay-350 { transition-delay: 350ms !important; }
+.in-view.delay-400 { transition-delay: 400ms !important; }
+.in-view.delay-500 { transition-delay: 500ms !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .in-view {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Interactive Card Micro-Movements & Viewport Elevation */
+.interactive-card,
+article[data-tab-item],
+#gallery-grid > div,
+#dining-grid > article,
+#rooms-grid > article,
+#offers-grid > article,
+#stays-grid > article,
+#pathways-container > div,
+.property-item {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+}
+
+.interactive-card:hover,
+article[data-tab-item]:hover,
+#gallery-grid > div:hover,
+#dining-grid > article:hover,
+#rooms-grid > article:hover,
+#offers-grid > article:hover,
+#stays-grid > article:hover,
+#pathways-container > div:hover,
+.property-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px -10px rgba(18, 18, 18, 0.12), 0 10px 15px -6px rgba(18, 18, 18, 0.05);
+  border-color: rgba(197, 160, 89, 0.45);
+}
 
 /* Hero Slider Wipe Animations */
 .slide-item {

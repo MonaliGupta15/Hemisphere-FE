@@ -475,10 +475,11 @@ function initStaysFilter() {
       const cat = card.getAttribute('data-category')
       if (filter === 'all' || cat === filter) {
         card.style.display = ''
-        card.style.opacity = '1'
+        card.style.opacity = ''
       } else {
         card.style.display = 'none'
-        card.style.opacity = '0'
+        card.style.opacity = ''
+        card.classList.remove('in-view')
       }
     })
 
@@ -505,27 +506,184 @@ function initStaysFilter() {
 }
 
 /* ==========================================================================
-   9. Scroll Entrance Animations (IntersectionObserver)
+   9. Scroll Entrance & Viewport Interactive Animations (IntersectionObserver)
    ========================================================================== */
 function initScrollAnimations() {
+  // 1. Auto-discover interactive elements across all 14 pages
+  const autoSelectors = [
+    // Section headers & titles
+    'main section > div > .text-center',
+    'main section > div > .mb-8',
+    'main section > div > .mb-10',
+    'main section > div > .mb-12',
+    'main section > div > .mb-14',
+    // Grid containers child cards & articles
+    '#gallery-grid > div',
+    '#dining-grid > article',
+    '#rooms-grid > article',
+    '#offers-grid > article',
+    '#stays-grid > article',
+    '#pathways-container > div',
+    '.property-item',
+    'main section .grid-cols-1 > article',
+    'main section .md\\:grid-cols-2 > article',
+    'main section .md\\:grid-cols-3 > article',
+    'main section .md\\:grid-cols-3 > div',
+    'main section .lg\\:grid-cols-3 > article',
+    'main section .lg\\:grid-cols-3 > div',
+    // Property showcase & split columns
+    'section .grid > .lg\\:col-span-6',
+    // Tables & cards
+    '.table-container',
+    '.tier-card',
+    // Full width callouts & banners
+    'main section:last-of-type > div'
+  ]
+
+  autoSelectors.forEach((selector) => {
+    try {
+      const items = document.querySelectorAll(selector)
+      items.forEach((el, index) => {
+        if (el.closest('header') || el.closest('#mobile-drawer') || el.closest('#preloader') || el.closest('#booking-form') || el.closest('#booking-section')) return
+        if (el.classList.contains('reveal-on-scroll') || el.classList.contains('reveal-left') || el.classList.contains('reveal-right') || el.classList.contains('reveal-scale')) return
+        
+        // Directional reveal for split showcases
+        if (el.classList.contains('lg:col-span-6') && el.parentElement && el.parentElement.classList.contains('lg:grid-cols-12')) {
+          if (el === el.parentElement.firstElementChild) {
+            el.classList.add('reveal-left')
+          } else {
+            el.classList.add('reveal-right')
+          }
+        } else if (el.parentElement && (el.parentElement.id?.includes('grid') || el.classList.contains('property-item') || el.parentElement.id === 'pathways-container' || el.tagName === 'ARTICLE')) {
+          el.classList.add('reveal-on-scroll')
+          const delayMod = (index % 4) * 100
+          if (delayMod === 100) el.classList.add('delay-100')
+          else if (delayMod === 200) el.classList.add('delay-200')
+          else if (delayMod === 300) el.classList.add('delay-300')
+        } else {
+          el.classList.add('reveal-on-scroll')
+        }
+      })
+    } catch (e) {
+      // ignore
+    }
+  })
+
+  // 2. Query all elements with reveal classes
   const elements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale')
   if (!elements.length) return
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view')
-        } else {
-          // Re-trigger smoothly when scrolling back
-          entry.target.classList.remove('in-view')
-        }
-      })
-    },
-    { threshold: 0.12 }
-  )
+  // 3. Track scroll direction continuously (native & Lenis synchronized)
+  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop
+  let scrollDirection = 'down'
 
-  elements.forEach((el) => observer.observe(el))
+  const updateScrollDirection = (currentY) => {
+    const diff = currentY - lastScrollY
+    if (Math.abs(diff) >= 2) {
+      scrollDirection = diff > 0 ? 'down' : 'up'
+      lastScrollY = currentY
+    }
+  }
+
+  // 4. Check all elements and apply continuous bi-directional animation
+  const checkViewport = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight
+    const currentY = window.pageYOffset || document.documentElement.scrollTop
+    updateScrollDirection(currentY)
+
+    elements.forEach((el) => {
+      // Skip hidden filter tabs
+      if (el.offsetParent === null && el.style.display === 'none') {
+        el.classList.remove('in-view')
+        return
+      }
+
+      const rect = el.getBoundingClientRect()
+      const elHeight = rect.height || el.offsetHeight || 100
+
+      // Case 1: Completely above viewport (user scrolled down past this element)
+      if (rect.bottom <= 0) {
+        el.classList.remove('in-view')
+        // Prime to float down from top when scrolling back up
+        el.classList.remove('from-below')
+        el.classList.add('from-above')
+        return
+      }
+
+      // Case 2: Completely below viewport (user scrolled up past this element)
+      if (rect.top >= vh) {
+        el.classList.remove('in-view')
+        // Prime to float up from bottom when scrolling down
+        el.classList.remove('from-above')
+        el.classList.add('from-below')
+        return
+      }
+
+      // Case 3: Inside or entering viewport
+      if (scrollDirection === 'up') {
+        // When scrolling UP:
+        // Element is entering from the top.
+        // Trigger entrance when enough content is visible (at least 60px or 35% of card)
+        // so the user actually sees the full animation play inside their visible screen!
+        const topTrigger = Math.min(80, elHeight * 0.35)
+        if (rect.top < 0 && rect.bottom < topTrigger) {
+          // Still mostly off-screen above, wait until visible
+          el.classList.remove('in-view')
+          el.classList.add('from-above')
+        } else {
+          el.classList.add('in-view')
+        }
+      } else {
+        // When scrolling DOWN:
+        // Element is entering from the bottom.
+        // Trigger entrance when top enters within viewport
+        const bottomTrigger = vh - Math.min(30, elHeight * 0.15)
+        if (rect.top > bottomTrigger) {
+          // Still mostly below, wait until crossing trigger line
+          el.classList.remove('in-view')
+          el.classList.add('from-below')
+        } else {
+          el.classList.add('in-view')
+        }
+      }
+    })
+  }
+
+  // 5. Initial viewport check on load
+  checkViewport()
+
+  // 6. High-performance scroll synchronization (rAF-throttled)
+  let scrollRaf = null
+  const onScrollThrottled = () => {
+    if (scrollRaf) return
+    scrollRaf = requestAnimationFrame(() => {
+      checkViewport()
+      scrollRaf = null
+    })
+  }
+
+  window.addEventListener('scroll', onScrollThrottled, { passive: true })
+  
+  if (typeof lenis !== 'undefined' && lenis) {
+    lenis.on('scroll', (e) => {
+      if (e && typeof e.direction !== 'undefined') {
+        scrollDirection = e.direction > 0 ? 'down' : 'up'
+      }
+      onScrollThrottled()
+    })
+  }
+
+  window.addEventListener('resize', onScrollThrottled, { passive: true })
+
+  // 7. Re-check on filter tab switch or user interactions
+  const triggerRecheck = () => {
+    setTimeout(checkViewport, 40)
+    setTimeout(checkViewport, 150)
+  }
+
+  document.querySelectorAll('[data-tab-filter], .tab-btn, .stays-filter-tab').forEach((tab) => {
+    tab.addEventListener('click', triggerRecheck)
+  })
 }
 
 /* ==========================================================================
@@ -622,10 +780,11 @@ function initGenericTabs() {
         const itemCat = item.getAttribute('data-tab-item')
         if (filterVal === 'all' || itemCat === filterVal || (itemCat && itemCat.includes(filterVal))) {
           item.style.display = ''
-          item.style.opacity = '1'
+          item.style.opacity = ''
         } else {
           item.style.display = 'none'
-          item.style.opacity = '0'
+          item.style.opacity = ''
+          item.classList.remove('in-view')
         }
       })
 
