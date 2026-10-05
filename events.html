@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +10,42 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind Browser Polyfill (Prevents Chrome DevTools from pausing on caught exceptions in file:// protocol) -->
+  <script>
+    try {
+      var createHashStub = function () {
+        var buf = ''
+        return {
+          update: function (s) { buf += s; return this },
+          digest: function () {
+            var h = 0
+            for (var i = 0; i < buf.length; i++) {
+              h = ((h << 5) - h) + buf.charCodeAt(i)
+              h |= 0
+            }
+            return (h >>> 0).toString(16)
+          }
+        }
+      }
+      if (typeof window !== 'undefined') {
+        if (window.crypto && !window.crypto.createHash) {
+          try { window.crypto.createHash = createHashStub } catch (_) {}
+        }
+        if (typeof Crypto !== 'undefined' && Crypto.prototype && !Crypto.prototype.createHash) {
+          try { Crypto.prototype.createHash = createHashStub } catch (_) {}
+        }
+        try {
+          Object.defineProperty(Object.prototype, 'createHash', {
+            value: createHashStub,
+            enumerable: false,
+            configurable: true,
+            writable: true
+          });
+        } catch (_) {}
+      }
+    } catch (_) {}
+  </script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -210,12 +246,25 @@
          ========================================================================== -->
     <section class="py-16 sm:py-20 bg-bg overflow-hidden">
       <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs uppercase tracking-luxury text-brand-gold font-semibold block mb-2">Venues & Capacities</span>
-          <h2 class="text-3xl sm:text-4xl font-serif text-text-primary">Flexible spaces for every scale.</h2>
-          <p class="text-xs text-text-secondary mt-2">Comprehensive capacity matrix across all Hemisphere properties.</p>
+        <!-- Filter Controls -->
+        <div class="mb-12 pb-6 border-b border-border/80">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div>
+              <span class="text-xs uppercase tracking-luxury text-brand-gold font-semibold block mb-1">Venues & Capacities</span>
+              <p class="text-sm text-text-secondary">Flexible spaces and comprehensive capacity matrix across all Hemisphere properties.</p>
+            </div>
+            <div class="text-xs text-text-muted hidden sm:block tracking-wide">
+              Event Spaces • 8 Key Venues
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 sm:gap-2.5" data-tab-group data-tab-target="#venues-tbody">
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-brand-charcoal text-white shadow-sm whitespace-nowrap transition-all cursor-pointer" data-tab-filter="all">All Venues (8)</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-brand-gold whitespace-nowrap transition-all cursor-pointer" data-tab-filter="grand-margherita">Grand Margherita</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-brand-gold whitespace-nowrap transition-all cursor-pointer" data-tab-filter="riverside">Riverside Majestic</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-brand-gold whitespace-nowrap transition-all cursor-pointer" data-tab-filter="damai-beach">Damai Beach</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-brand-gold whitespace-nowrap transition-all cursor-pointer" data-tab-filter="damai-lagoon">Damai Lagoon</button>
+          </div>
         </div>
-
         <div class="table-container bg-surface border border-border rounded-sm shadow-md overflow-hidden mb-16">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
@@ -229,8 +278,8 @@
                 <th class="p-4 sm:p-5 font-medium">Key Feature</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-border/60">
-              <tr class="hover:bg-surface-subtle/50 transition-colors">
+            <tbody id="venues-tbody" class="divide-y divide-border/60">
+              <tr class="hover:bg-surface-subtle/50 transition-colors" data-tab-item="grand-margherita">
                 <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Grand Ballroom</td>
                 <td class="p-4 sm:p-5 text-text-secondary">Grand Margherita Hotel</td>
                 <td class="p-4 sm:p-5 text-text-secondary">1,020 m²</td>
@@ -239,7 +288,7 @@
                 <td class="p-4 sm:p-5 text-text-secondary">1,400</td>
                 <td class="p-4 sm:p-5 text-brand-gold font-medium">Column-Free, River View Pre-Function</td>
               </tr>
-              <tr class="hover:bg-surface-subtle/50 transition-colors">
+              <tr class="hover:bg-surface-subtle/50 transition-colors" data-tab-item="riverside">
                 <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Puteri Grand Ballroom</td>
                 <td class="p-4 sm:p-5 text-text-secondary">Riverside Majestic Puteri</td>
                 <td class="p-4 sm:p-5 text-text-secondary">950 m²</td>
@@ -248,7 +297,7 @@
                 <td class="p-4 sm:p-5 text-text-secondary">1,200</td>
                 <td class="p-4 sm:p-5 text-brand-gold font-medium">High Ceilings, Dedicated Convention Wing</td>
               </tr>
-              <tr class="hover:bg-surface-subtle/50 transition-colors">
+              <tr class="hover:bg-surface-subtle/50 transition-colors" data-tab-item="riverside">
                 <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Astana Conference Centre</td>
                 <td class="p-4 sm:p-5 text-text-secondary">Riverside Majestic Astana</td>
                 <td class="p-4 sm:p-5 text-text-secondary">520 m²</td>
@@ -257,7 +306,7 @@
                 <td class="p-4 sm:p-5 text-text-secondary">600</td>
                 <td class="p-4 sm:p-5 text-brand-gold font-medium">Modern Tech, Hybrid Video Walls</td>
               </tr>
-              <tr class="hover:bg-surface-subtle/50 transition-colors">
+              <tr class="hover:bg-surface-subtle/50 transition-colors" data-tab-item="damai-beach">
                 <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Santubong Rainforest Ballroom</td>
                 <td class="p-4 sm:p-5 text-text-secondary">Damai Beach Resort</td>
                 <td class="p-4 sm:p-5 text-text-secondary">680 m²</td>
@@ -266,7 +315,7 @@
                 <td class="p-4 sm:p-5 text-text-secondary">750</td>
                 <td class="p-4 sm:p-5 text-brand-gold font-medium">Panoramic Jungle & Coastal Vista</td>
               </tr>
-              <tr class="hover:bg-surface-subtle/50 transition-colors">
+              <tr class="hover:bg-surface-subtle/50 transition-colors" data-tab-item="damai-lagoon">
                 <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Lagoon Sunset Pavilion & Lawn</td>
                 <td class="p-4 sm:p-5 text-text-secondary">Damai Lagoon Resort</td>
                 <td class="p-4 sm:p-5 text-text-secondary">Outdoor / 800 m²</td>
@@ -275,7 +324,7 @@
                 <td class="p-4 sm:p-5 text-text-secondary">400</td>
                 <td class="p-4 sm:p-5 text-brand-gold font-medium">Turquoise Lagoon Beachfront Backdrop</td>
               </tr>
-              <tr class="hover:bg-surface-subtle/50 transition-colors">
+              <tr class="hover:bg-surface-subtle/50 transition-colors" data-tab-item="grand-margherita">
                 <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Rajah Court Boardroom Suites</td>
                 <td class="p-4 sm:p-5 text-text-secondary">Grand Margherita Hotel</td>
                 <td class="p-4 sm:p-5 text-text-secondary">45 – 90 m²</td>
@@ -402,14 +451,14 @@
   <!-- Global Footer -->
   <footer class="bg-brand-charcoal text-text-inverse pt-14 sm:pt-16 pb-10 sm:pb-12 border-t border-brand-charcoal/90">
     <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 sm:pb-12 border-b border-white/10">
+      <div class="footer-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 sm:pb-12 border-b border-white/10">
         <!-- Brand Column -->
-        <div class="lg:col-span-4 space-y-4">
+        <div class="footer-brand-col col-span-2 sm:col-span-3 lg:col-span-4 space-y-4">
           <a href="index.html" class="inline-block focus:outline-none">
             <span class="font-serif text-2xl tracking-[0.25em] uppercase font-light text-white block">Hemisphere</span>
             <span class="text-[9px] tracking-[0.35em] uppercase font-sans text-brand-gold">Hotels & Resorts</span>
           </a>
-          <p class="text-xs text-text-inverse/70 max-w-sm font-light leading-relaxed pt-2">
+          <p class="text-xs text-text-inverse/70 max-w-sm sm:max-w-xl lg:max-w-sm font-light leading-relaxed pt-2">
             Unifying Sarawak’s premier coastal sanctuaries and landmark city retreats under one philosophy of timeless hospitality and authentic discovery.
           </p>
           <div class="pt-3 flex items-center space-x-6 text-[11px] uppercase tracking-luxury text-white/60">
@@ -420,7 +469,7 @@
         </div>
 
         <!-- Stays Column -->
-        <div class="lg:col-span-3 space-y-3.5">
+        <div class="footer-col footer-col-stays col-span-1 sm:col-span-1 lg:col-span-3 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Stays</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
             <li><a href="damai-beach-resort.html" class="hover:text-brand-gold transition-colors">Damai Beach Resort</a></li>
@@ -432,7 +481,7 @@
         </div>
 
         <!-- Explore Column -->
-        <div class="lg:col-span-3 space-y-3.5">
+        <div class="footer-col footer-col-explore col-span-1 sm:col-span-1 lg:col-span-3 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Explore</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
             <li><a href="rooms.html" class="hover:text-brand-gold transition-colors">Rooms & Suites</a></li>
@@ -446,7 +495,7 @@
         </div>
 
         <!-- About Column -->
-        <div class="lg:col-span-2 space-y-3.5">
+        <div class="footer-col footer-col-about col-span-2 sm:col-span-1 lg:col-span-2 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">About</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
             <li><a href="about.html" class="hover:text-brand-gold transition-colors">Our Philosophy</a></li>

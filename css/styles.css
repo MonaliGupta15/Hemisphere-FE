@@ -49,6 +49,11 @@ body {
   padding: 0;
 }
 
+/* Ensure anchor links & tabs scroll with header offset */
+section[id], article[id], div[id] {
+  scroll-margin-top: clamp(80px, 9vw, 120px);
+}
+
 /* Typography Utility */
 .font-serif {
   font-family: 'Cormorant Garamond', Georgia, serif;
@@ -213,6 +218,18 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
 /* Form input focus styling */
 .luxury-input {
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
@@ -247,22 +264,81 @@ body {
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Desktop Header Book Button */
+/* Desktop Header Responsive Layout (1024px+)
+   Prevents navbar overflow on intermediate desktop / iPad Pro screens (1024px - 1280px) */
 @media (min-width: 1024px) {
-  .header-book-btn {
+  /* Fluid responsive horizontal padding on nav container */
+  #main-header > div:not(#announcement-bar) {
+    padding-left: clamp(1rem, 2.5vw, 4rem) !important;
+    padding-right: clamp(1rem, 2.5vw, 4rem) !important;
+    padding-top: clamp(0.9rem, 1.2vw, 1.5rem) !important;
+    padding-bottom: clamp(0.9rem, 1.2vw, 1.5rem) !important;
+    max-width: 1720px;
+    box-sizing: border-box;
+  }
+
+  /* Fluid brand typography */
+  #main-header #brand-wordmark {
+    font-size: clamp(1.15rem, 1.4vw, 1.5rem) !important;
+    letter-spacing: clamp(0.16em, 0.22vw, 0.25em) !important;
+    white-space: nowrap !important;
+  }
+
+  #main-header #brand-wordmark + span {
+    font-size: clamp(7.5px, 0.65vw, 9px) !important;
+    letter-spacing: clamp(0.22em, 0.3vw, 0.35em) !important;
+    white-space: nowrap !important;
+  }
+
+  /* Fluid navigation gaps & typography - replaces rigid space-x-7 */
+  #main-header nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: clamp(0.6rem, 1.15vw, 1.75rem) !important;
+    white-space: nowrap !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* Nullify Tailwind's rigid space-x-7 margin in favor of fluid flex gap */
+  #main-header nav > * + * {
+    margin-left: 0 !important;
+  }
+
+  #main-header nav a,
+  #main-header nav .nav-item {
+    font-size: clamp(10.5px, 0.72vw, 12px) !important;
+    letter-spacing: clamp(0.1em, 0.18vw, 0.25em) !important;
+    white-space: nowrap !important;
+  }
+
+  /* Fluid Book Now CTA button */
+  .header-book-btn,
+  #main-header a[href*="booking"],
+  #main-header a[href*="rfp"],
+  #main-header a[href*="enroll"] {
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: all 0.3s ease;
+    padding: clamp(0.4rem, 0.6vw, 0.625rem) clamp(0.75rem, 1.1vw, 1.25rem) !important;
+    font-size: clamp(10.5px, 0.72vw, 12px) !important;
+    letter-spacing: clamp(0.12em, 0.18vw, 0.25em) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
-  .header-book-btn:hover {
-    background-color: var(--color-brand-gold);
-    color: var(--color-brand-charcoal);
-    border-color: var(--color-brand-gold);
+
+  .header-book-btn:hover,
+  #main-header a[href*="booking"]:hover,
+  #main-header a[href*="rfp"]:hover,
+  #main-header a[href*="enroll"]:hover {
+    background-color: var(--color-brand-gold) !important;
+    color: var(--color-brand-charcoal) !important;
+    border-color: var(--color-brand-gold) !important;
   }
 }
+
 
 /* Mobile Navbar Solid Luxury Solution (< 1024px)
    Eliminates all transparency and glassmorphism so content underneath never mixes */
@@ -382,6 +458,72 @@ body {
 .back-to-top-btn:hover span:first-child {
   color: var(--color-brand-gold);
 }
+
+/* ==========================================================================
+   Responsive Footer Architecture
+   Maintains side-by-side layouts on tablet/mobile and preserves full screen
+   ========================================================================== */
+
+/* Tablet / Medium Screens (640px to 1023px, including 721px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .footer-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2.25rem 2rem !important;
+  }
+  .footer-brand-col {
+    grid-column: span 3 / span 3 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .footer-col {
+    grid-column: span 1 / span 1 !important;
+  }
+}
+
+/* Small Mobile Screens (< 640px) */
+@media (max-width: 639px) {
+  .footer-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 2rem 1.25rem !important;
+  }
+  .footer-brand-col {
+    grid-column: span 2 / span 2 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 1.25rem;
+  }
+  .footer-col-stays {
+    grid-column: span 1 / span 1 !important;
+  }
+  .footer-col-explore {
+    grid-column: span 1 / span 1 !important;
+  }
+  .footer-col-about {
+    grid-column: span 2 / span 2 !important;
+    padding-top: 0.5rem;
+  }
+  .footer-col-about ul {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem 1rem !important;
+  }
+}
+
+/* ==========================================================================
+   Hero Section Height Optimization for Portrait & Tablet Displays
+   Prevents excessive vertical stretching on tall portrait screens (Surface Pro, iPad)
+   ========================================================================== */
+@media (max-aspect-ratio: 1/1), (max-width: 1199px) {
+  #hero-section {
+    min-height: 560px !important;
+    max-height: 820px !important;
+    height: 75vh !important;
+  }
+}
+
+
 
 
 

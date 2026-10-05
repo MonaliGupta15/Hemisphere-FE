@@ -11,6 +11,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Tailwind Browser Polyfill (Prevents Chrome DevTools from pausing on caught exceptions in file:// protocol) -->
+  <script>
+    try {
+      var createHashStub = function () {
+        var buf = ''
+        return {
+          update: function (s) { buf += s; return this },
+          digest: function () {
+            var h = 0
+            for (var i = 0; i < buf.length; i++) {
+              h = ((h << 5) - h) + buf.charCodeAt(i)
+              h |= 0
+            }
+            return (h >>> 0).toString(16)
+          }
+        }
+      }
+      if (typeof window !== 'undefined') {
+        if (window.crypto && !window.crypto.createHash) {
+          try { window.crypto.createHash = createHashStub } catch (_) {}
+        }
+        if (typeof Crypto !== 'undefined' && Crypto.prototype && !Crypto.prototype.createHash) {
+          try { Crypto.prototype.createHash = createHashStub } catch (_) {}
+        }
+        try {
+          Object.defineProperty(Object.prototype, 'createHash', {
+            value: createHashStub,
+            enumerable: false,
+            configurable: true,
+            writable: true
+          });
+        } catch (_) {}
+      }
+    } catch (_) {}
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -113,8 +149,8 @@
             </div>
           </div>
         </div>
-        <a href="rooms.html" class="hover:text-brand-gold transition-colors py-1">Rooms</a>
-        <a href="dining.html" class="hover:text-brand-gold transition-colors py-1">Dining</a>
+        <a href="rooms.html?property=damai-beach" class="hover:text-brand-gold transition-colors py-1">Rooms</a>
+        <a href="dining.html?category=beach" class="hover:text-brand-gold transition-colors py-1">Dining</a>
         <a href="experiences.html" class="hover:text-brand-gold transition-colors py-1">Experiences</a>
         <a href="offers.html" class="hover:text-brand-gold transition-colors py-1">Offers</a>
         <a href="events.html" class="hover:text-brand-gold transition-colors py-1">Events</a>
@@ -162,8 +198,8 @@
           </div>
         </div>
 
-        <a href="rooms.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Rooms & Suites</a>
-        <a href="dining.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Dining & Bars</a>
+        <a href="rooms.html?property=damai-beach" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Rooms & Suites</a>
+        <a href="dining.html?category=beach" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Dining & Bars</a>
         <a href="experiences.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Experiences</a>
         <a href="offers.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Offers & Packages</a>
         <a href="events.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Events & Weddings</a>
@@ -228,18 +264,18 @@
 
         <form action="index.html" method="GET" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
           <input type="hidden" name="hotel" value="damai-beach" />
-          <div class="p-3 bg-surface-subtle border border-border/80 rounded-sm">
-            <span class="text-[9px] uppercase tracking-luxury text-text-muted block">Destination</span>
-            <span class="text-xs font-semibold text-text-primary">Damai Beach Resort</span>
-          </div>
-          <div class="p-3 bg-surface-subtle border border-border/80 rounded-sm">
-            <span class="text-[9px] uppercase tracking-luxury text-text-muted block">Duration</span>
-            <span class="text-xs font-semibold text-text-primary">Flexible 2+ Nights</span>
-          </div>
-          <div class="p-3 bg-surface-subtle border border-border/80 rounded-sm">
-            <span class="text-[9px] uppercase tracking-luxury text-text-muted block">Guests</span>
-            <span class="text-xs font-semibold text-text-primary">2 Adults, 1 Room</span>
-          </div>
+          <a href="index.html?hotel=damai-beach#booking-section" class="p-3 bg-surface-subtle border border-border/80 rounded-sm block hover:border-brand-gold/80 hover:bg-white transition-all cursor-pointer group">
+            <span class="text-[9px] uppercase tracking-luxury text-text-muted block group-hover:text-brand-gold transition-colors">Destination</span>
+            <span class="text-xs font-semibold text-text-primary group-hover:text-brand-gold transition-colors">Damai Beach Resort</span>
+          </a>
+          <a href="index.html?hotel=damai-beach#booking-section" class="p-3 bg-surface-subtle border border-border/80 rounded-sm block hover:border-brand-gold/80 hover:bg-white transition-all cursor-pointer group">
+            <span class="text-[9px] uppercase tracking-luxury text-text-muted block group-hover:text-brand-gold transition-colors">Duration</span>
+            <span class="text-xs font-semibold text-text-primary group-hover:text-brand-gold transition-colors">Flexible 2+ Nights</span>
+          </a>
+          <a href="index.html?hotel=damai-beach#booking-section" class="p-3 bg-surface-subtle border border-border/80 rounded-sm block hover:border-brand-gold/80 hover:bg-white transition-all cursor-pointer group">
+            <span class="text-[9px] uppercase tracking-luxury text-text-muted block group-hover:text-brand-gold transition-colors">Guests</span>
+            <span class="text-xs font-semibold text-text-primary group-hover:text-brand-gold transition-colors">2 Adults, 1 Room</span>
+          </a>
           <div>
             <a href="index.html?hotel=damai-beach#booking-section" class="w-full h-full min-h-[48px] bg-brand-charcoal text-white hover:bg-brand-charcoal/90 rounded-sm flex items-center justify-center gap-2 text-xs uppercase tracking-luxury font-medium shadow-sm transition-all">
               <i data-lucide="search" class="w-3.5 h-3.5 text-brand-gold"></i>
@@ -250,10 +286,26 @@
       </div>
     </section>
 
+    <!-- Property In-Page Sub-Navigation Tabs -->
+    <div class="sticky top-[68px] lg:top-[74px] z-30 bg-surface/95 backdrop-blur-md border-b border-border shadow-sm py-3 px-4 sm:px-6">
+      <div class="mx-auto w-full max-w-7xl flex items-center justify-between gap-4 overflow-x-auto no-scrollbar">
+        <div class="flex items-center gap-2 sm:gap-4 shrink-0 text-xs uppercase tracking-luxury font-medium">
+          <a href="#overview" class="px-3.5 py-1.5 rounded-sm hover:text-brand-gold text-text-primary transition-colors">Overview</a>
+          <a href="#accommodations" class="px-3.5 py-1.5 rounded-sm hover:text-brand-gold text-text-secondary transition-colors">Chalets & Rooms</a>
+          <a href="#dining" class="px-3.5 py-1.5 rounded-sm hover:text-brand-gold text-text-secondary transition-colors">Dining & Bars</a>
+          <a href="#location" class="px-3.5 py-1.5 rounded-sm hover:text-brand-gold text-text-secondary transition-colors">Location</a>
+        </div>
+        <div class="shrink-0 flex items-center gap-3">
+          <a href="rooms.html?property=damai-beach" class="text-xs uppercase tracking-luxury font-medium text-brand-gold hover:underline">All Keys →</a>
+          <a href="#property-booking" class="px-4 py-1.5 bg-brand-charcoal text-white text-[11px] uppercase tracking-luxury font-medium rounded-sm hover:bg-brand-charcoal/90 transition-colors">Reserve</a>
+        </div>
+      </div>
+    </div>
+
     <!-- ==========================================================================
          Resort Overview
          ========================================================================== -->
-    <section class="py-16 sm:py-20 bg-bg overflow-hidden">
+    <section id="overview" class="py-16 sm:py-20 bg-bg overflow-hidden">
       <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div class="lg:col-span-6 space-y-6">
@@ -375,7 +427,7 @@
     <!-- ==========================================================================
          Dining & Amenities
          ========================================================================== -->
-    <section class="py-16 sm:py-20 bg-bg border-t border-border/80 overflow-hidden">
+    <section id="dining" class="py-16 sm:py-20 bg-bg border-t border-border/80 overflow-hidden">
       <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div class="lg:col-span-6 relative aspect-[16/11] rounded-sm overflow-hidden shadow-xl">
@@ -407,7 +459,7 @@
     <!-- ==========================================================================
          Location & Getting There
          ========================================================================== -->
-    <section class="py-16 sm:py-20 bg-surface-subtle/50 border-t border-border/80 overflow-hidden">
+    <section id="location" class="py-16 sm:py-20 bg-surface-subtle/50 border-t border-border/80 overflow-hidden">
       <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-5 space-y-4">
@@ -458,14 +510,14 @@
   <!-- Global Footer -->
   <footer class="bg-brand-charcoal text-text-inverse pt-14 sm:pt-16 pb-10 sm:pb-12 border-t border-brand-charcoal/90">
     <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 sm:pb-12 border-b border-white/10">
+      <div class="footer-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 sm:pb-12 border-b border-white/10">
         <!-- Brand Column -->
-        <div class="lg:col-span-4 space-y-4">
+        <div class="footer-brand-col col-span-2 sm:col-span-3 lg:col-span-4 space-y-4">
           <a href="index.html" class="inline-block focus:outline-none">
             <span class="font-serif text-2xl tracking-[0.25em] uppercase font-light text-white block">Hemisphere</span>
             <span class="text-[9px] tracking-[0.35em] uppercase font-sans text-brand-gold">Hotels & Resorts</span>
           </a>
-          <p class="text-xs text-text-inverse/70 max-w-sm font-light leading-relaxed pt-2">
+          <p class="text-xs text-text-inverse/70 max-w-sm sm:max-w-xl lg:max-w-sm font-light leading-relaxed pt-2">
             Unifying Sarawak’s premier coastal sanctuaries and landmark city retreats under one philosophy of timeless hospitality and authentic discovery.
           </p>
           <div class="pt-3 flex items-center space-x-6 text-[11px] uppercase tracking-luxury text-white/60">
@@ -476,7 +528,7 @@
         </div>
 
         <!-- Stays Column -->
-        <div class="lg:col-span-3 space-y-3.5">
+        <div class="footer-col footer-col-stays col-span-1 sm:col-span-1 lg:col-span-3 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Stays</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
             <li><a href="damai-beach-resort.html" class="text-brand-gold font-medium">Damai Beach Resort</a></li>
@@ -488,7 +540,7 @@
         </div>
 
         <!-- Explore Column -->
-        <div class="lg:col-span-3 space-y-3.5">
+        <div class="footer-col footer-col-explore col-span-1 sm:col-span-1 lg:col-span-3 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Explore</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
             <li><a href="rooms.html" class="hover:text-brand-gold transition-colors">Rooms & Suites</a></li>
@@ -502,7 +554,7 @@
         </div>
 
         <!-- About Column -->
-        <div class="lg:col-span-2 space-y-3.5">
+        <div class="footer-col footer-col-about col-span-2 sm:col-span-1 lg:col-span-2 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">About</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
             <li><a href="about.html" class="hover:text-brand-gold transition-colors">Our Philosophy</a></li>

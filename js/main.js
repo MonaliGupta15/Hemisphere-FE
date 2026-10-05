@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop()
   initScrollAnimations()
   initCircularTransitions()
+  initDesktopStaysDropdown()
+  initAnchorTabs()
 })
 
 /* ==========================================================================
@@ -457,29 +459,49 @@ function initStaysFilter() {
   const cards = document.querySelectorAll('.property-item')
   if (!tabs.length || !cards.length) return
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => {
+  const applyFilter = (filter, updateUrl = true) => {
+    tabs.forEach((t) => {
+      const tFilter = t.getAttribute('data-filter')
+      if (tFilter === filter) {
+        t.classList.add('bg-brand-charcoal', 'text-text-inverse')
+        t.classList.remove('bg-surface', 'border', 'border-border', 'text-text-secondary')
+      } else {
         t.classList.remove('bg-brand-charcoal', 'text-text-inverse')
         t.classList.add('bg-surface', 'border', 'border-border', 'text-text-secondary')
-      })
-      tab.classList.add('bg-brand-charcoal', 'text-text-inverse')
-      tab.classList.remove('bg-surface', 'border', 'border-border', 'text-text-secondary')
+      }
+    })
 
+    cards.forEach((card) => {
+      const cat = card.getAttribute('data-category')
+      if (filter === 'all' || cat === filter) {
+        card.style.display = ''
+        card.style.opacity = '1'
+      } else {
+        card.style.display = 'none'
+        card.style.opacity = '0'
+      }
+    })
+
+    if (updateUrl && history.replaceState) {
+      const url = new URL(window.location.href)
+      url.searchParams.set('filter', filter)
+      history.replaceState(null, '', url.toString())
+    }
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
       const filter = tab.getAttribute('data-filter')
-
-      cards.forEach((card) => {
-        const cat = card.getAttribute('data-category')
-        if (filter === 'all' || cat === filter) {
-          card.style.display = ''
-          card.style.opacity = '1'
-        } else {
-          card.style.display = 'none'
-          card.style.opacity = '0'
-        }
-      })
+      applyFilter(filter, true)
     })
   })
+
+  // URL Query / Hash Auto-Routing
+  const params = new URLSearchParams(window.location.search)
+  const initialFilter = params.get('filter') || params.get('tab') || window.location.hash.replace('#', '')
+  if (initialFilter && (initialFilter === 'coastal' || initialFilter === 'city')) {
+    applyFilter(initialFilter, false)
+  }
 }
 
 /* ==========================================================================
@@ -584,28 +606,56 @@ function initGenericTabs() {
 
     const items = container.querySelectorAll('[data-tab-item]')
 
-    triggers.forEach((trigger) => {
-      trigger.addEventListener('click', () => {
-        triggers.forEach((t) => {
+    const activateTab = (filterVal, updateUrl = true) => {
+      triggers.forEach((t) => {
+        const tVal = t.getAttribute('data-tab-filter')
+        if (tVal === filterVal) {
+          t.classList.add('bg-brand-charcoal', 'text-white')
+          t.classList.remove('bg-surface', 'border', 'border-border', 'text-text-secondary')
+        } else {
           t.classList.remove('bg-brand-charcoal', 'text-white')
           t.classList.add('bg-surface', 'border', 'border-border', 'text-text-secondary')
-        })
-        trigger.classList.add('bg-brand-charcoal', 'text-white')
-        trigger.classList.remove('bg-surface', 'border', 'border-border', 'text-text-secondary')
+        }
+      })
 
+      items.forEach((item) => {
+        const itemCat = item.getAttribute('data-tab-item')
+        if (filterVal === 'all' || itemCat === filterVal || (itemCat && itemCat.includes(filterVal))) {
+          item.style.display = ''
+          item.style.opacity = '1'
+        } else {
+          item.style.display = 'none'
+          item.style.opacity = '0'
+        }
+      })
+
+      if (updateUrl && history.replaceState) {
+        const url = new URL(window.location.href)
+        url.searchParams.set('tab', filterVal)
+        history.replaceState(null, '', url.toString())
+      }
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
         const filterVal = trigger.getAttribute('data-tab-filter')
-        items.forEach((item) => {
-          const itemCat = item.getAttribute('data-tab-item')
-          if (filterVal === 'all' || itemCat === filterVal || itemCat.includes(filterVal)) {
-            item.style.display = ''
-            item.style.opacity = '1'
-          } else {
-            item.style.display = 'none'
-            item.style.opacity = '0'
-          }
-        })
+        activateTab(filterVal, true)
       })
     })
+
+    // URL Query Param / Hash Auto-Routing on load
+    const params = new URLSearchParams(window.location.search)
+    const urlTarget = params.get('property') || params.get('tab') || params.get('category') || params.get('filter') || window.location.hash.replace('#', '')
+
+    if (urlTarget) {
+      const match = Array.from(triggers).find((t) => {
+        const f = t.getAttribute('data-tab-filter')
+        return f === urlTarget || f.includes(urlTarget) || urlTarget.includes(f)
+      })
+      if (match) {
+        activateTab(match.getAttribute('data-tab-filter'), false)
+      }
+    }
   })
 }
 
@@ -774,6 +824,57 @@ function initBackToTop() {
           top: 0,
           behavior: 'smooth',
         })
+      }
+    })
+  })
+}
+
+/* ==========================================================================
+   18. Desktop Stays Dropdown Click & Touch Support
+   ========================================================================== */
+function initDesktopStaysDropdown() {
+  const stayGroups = document.querySelectorAll('header nav .relative.group')
+  stayGroups.forEach((grp) => {
+    const chevron = grp.querySelector('[data-lucide="chevron-down"]')
+    const menu = grp.querySelector('.group-hover\\:block, [class*="group-hover"]')
+    if (!chevron || !menu) return
+
+    chevron.style.cursor = 'pointer'
+    chevron.addEventListener('click', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      menu.classList.toggle('!block')
+    })
+  })
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('header nav .relative.group')) {
+      document.querySelectorAll('header nav .relative.group .\\!block').forEach((el) => {
+        el.classList.remove('!block')
+      })
+    }
+  })
+}
+
+/* ==========================================================================
+   19. Smooth Anchor & Sub-Nav Tab Scrolling
+   ========================================================================== */
+function initAnchorTabs() {
+  document.querySelectorAll('a[href^="#"]:not([href="#"]):not([href="#property-booking-dummy"])').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href')
+      if (!targetId || targetId === '#') return
+      const targetEl = document.querySelector(targetId)
+      if (targetEl) {
+        e.preventDefault()
+        if (typeof lenis !== 'undefined' && lenis) {
+          lenis.scrollTo(targetEl, {
+            offset: -85,
+            duration: 0.9,
+          })
+        } else {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
       }
     })
   })
