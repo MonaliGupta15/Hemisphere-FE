@@ -12,7 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnnouncementBar()
   initHeroSlider()
   initBookingWidget()
+  initBookingPreselect()
   initStaysFilter()
+  initGenericTabs()
+  initLightbox()
+  initModals()
+  initForms()
+  initActiveNav()
   initScrollAnimations()
   initCircularTransitions()
 })
@@ -102,20 +108,47 @@ function initHeaderScroll() {
   if (!header) return
 
   const handleScroll = () => {
-    if (window.scrollY > 40) {
-      header.classList.remove('bg-gradient-to-b', 'from-black/85', 'via-black/50', 'to-transparent', 'text-white')
-      header.classList.add('bg-white/95', 'backdrop-blur-md', 'text-text-primary', 'shadow-md', 'border-b', 'border-border/80')
+    const isMobile = window.innerWidth < 1024
+    const scrolled = window.scrollY > 40
+
+    if (isMobile) {
+      // Mobile: Always solid luxury charcoal with high contrast. Never transparent, never white glassmorphism.
+      header.classList.remove(
+        'bg-gradient-to-b', 'from-black/85', 'via-black/50', 'to-transparent',
+        'bg-white/95', 'text-text-primary'
+      )
+      header.classList.add('bg-brand-charcoal', 'text-white')
+      if (scrolled) {
+        header.classList.add('shadow-xl')
+      } else {
+        header.classList.remove('shadow-xl')
+      }
       if (wordmark) {
-        wordmark.classList.remove('text-white')
-        wordmark.classList.add('text-text-primary')
+        wordmark.classList.add('text-white')
+        wordmark.classList.remove('text-text-primary')
       }
       if (menuBtn) {
-        menuBtn.classList.remove('text-white')
-        menuBtn.classList.add('text-text-primary')
+        menuBtn.classList.add('text-white')
+        menuBtn.classList.remove('text-text-primary')
+      }
+      return
+    }
+
+    // Desktop: Cinematic transparent gradient at top, solid dark luxury on scroll
+    if (scrolled) {
+      header.classList.remove('bg-gradient-to-b', 'from-black/85', 'via-black/50', 'to-transparent', 'bg-white/95', 'text-text-primary')
+      header.classList.add('bg-brand-charcoal/95', 'backdrop-blur-md', 'text-white', 'shadow-xl', 'border-b', 'border-brand-gold/20')
+      if (wordmark) {
+        wordmark.classList.add('text-white')
+        wordmark.classList.remove('text-text-primary')
+      }
+      if (menuBtn) {
+        menuBtn.classList.add('text-white')
+        menuBtn.classList.remove('text-text-primary')
       }
     } else {
       header.classList.add('bg-gradient-to-b', 'from-black/85', 'via-black/50', 'to-transparent', 'text-white')
-      header.classList.remove('bg-white/95', 'backdrop-blur-md', 'text-text-primary', 'shadow-md', 'border-b', 'border-border/80')
+      header.classList.remove('bg-brand-charcoal/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-brand-gold/20', 'bg-white/95', 'text-text-primary')
       if (wordmark) {
         wordmark.classList.add('text-white')
         wordmark.classList.remove('text-text-primary')
@@ -128,6 +161,7 @@ function initHeaderScroll() {
   }
 
   window.addEventListener('scroll', handleScroll, { passive: true })
+  window.addEventListener('resize', handleScroll, { passive: true })
   handleScroll()
 }
 
@@ -510,3 +544,214 @@ function initCircularTransitions() {
   window.addEventListener('resize', updatePortals, { passive: true })
   updatePortals()
 }
+
+/* ==========================================================================
+   11. Booking Preselection via URL Query Params
+   ========================================================================== */
+function initBookingPreselect() {
+  const params = new URLSearchParams(window.location.search)
+  const hotelSlug = params.get('hotel')
+  const hotelDisplay = document.getElementById('selected-hotel-name')
+  if (!hotelSlug || !hotelDisplay) return
+
+  const hotelMap = {
+    'damai-beach': 'Damai Beach Resort',
+    'damai-lagoon': 'Damai Lagoon Resort',
+    'grand-margherita': 'Grand Margherita Hotel',
+    'riverside-majestic': 'Riverside Majestic Hotel',
+    'riverside-majestic-puteri': 'Riverside Majestic Hotel — Puteri Wing',
+    'riverside-majestic-astana': 'Riverside Majestic Hotel — Astana Wing',
+  }
+
+  if (hotelMap[hotelSlug]) {
+    hotelDisplay.textContent = hotelMap[hotelSlug]
+  }
+}
+
+/* ==========================================================================
+   12. Generic Category / Property Filter Tabs
+   ========================================================================== */
+function initGenericTabs() {
+  const groups = document.querySelectorAll('[data-tab-group]')
+  if (!groups.length) return
+
+  groups.forEach((group) => {
+    const triggers = group.querySelectorAll('[data-tab-filter]')
+    const containerSelector = group.getAttribute('data-tab-target')
+    const container = containerSelector ? document.querySelector(containerSelector) : document
+    if (!container) return
+
+    const items = container.querySelectorAll('[data-tab-item]')
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        triggers.forEach((t) => {
+          t.classList.remove('bg-brand-charcoal', 'text-white')
+          t.classList.add('bg-surface', 'border', 'border-border', 'text-text-secondary')
+        })
+        trigger.classList.add('bg-brand-charcoal', 'text-white')
+        trigger.classList.remove('bg-surface', 'border', 'border-border', 'text-text-secondary')
+
+        const filterVal = trigger.getAttribute('data-tab-filter')
+        items.forEach((item) => {
+          const itemCat = item.getAttribute('data-tab-item')
+          if (filterVal === 'all' || itemCat === filterVal || itemCat.includes(filterVal)) {
+            item.style.display = ''
+            item.style.opacity = '1'
+          } else {
+            item.style.display = 'none'
+            item.style.opacity = '0'
+          }
+        })
+      })
+    })
+  })
+}
+
+/* ==========================================================================
+   13. High-Resolution Media Lightbox
+   ========================================================================== */
+function initLightbox() {
+  const lightbox = document.getElementById('lightbox-modal')
+  const lightboxImg = document.getElementById('lightbox-img')
+  const lightboxCaption = document.getElementById('lightbox-caption')
+  const closeBtn = document.getElementById('lightbox-close')
+  const triggers = document.querySelectorAll('[data-lightbox-src]')
+
+  if (!lightbox || !lightboxImg) return
+
+  const openLightbox = (src, caption) => {
+    lightboxImg.src = src
+    if (lightboxCaption) lightboxCaption.textContent = caption || ''
+    lightbox.classList.add('active')
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('active')
+    document.body.style.overflow = ''
+    setTimeout(() => {
+      lightboxImg.src = ''
+    }, 250)
+  }
+
+  triggers.forEach((trig) => {
+    trig.addEventListener('click', (e) => {
+      e.preventDefault()
+      const src = trig.getAttribute('data-lightbox-src')
+      const caption = trig.getAttribute('data-lightbox-caption') || ''
+      openLightbox(src, caption)
+    })
+  })
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox)
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-backdrop')) {
+      closeLightbox()
+    }
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox()
+    }
+  })
+}
+
+/* ==========================================================================
+   14. Modal Dialogs (Room Details, Table Reservations, etc.)
+   ========================================================================== */
+function initModals() {
+  // Modal Triggers
+  document.querySelectorAll('[data-modal-target]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      const modalId = btn.getAttribute('data-modal-target')
+      const modal = document.getElementById(modalId)
+      if (modal) {
+        modal.classList.add('active')
+        document.body.style.overflow = 'hidden'
+
+        // Optional pre-fill for table reservation
+        const titleData = btn.getAttribute('data-modal-title')
+        const titleTarget = modal.querySelector('[data-modal-fill-title]')
+        if (titleData && titleTarget) {
+          titleTarget.textContent = titleData
+        }
+      }
+    })
+  })
+
+  // Modal Closers
+  document.querySelectorAll('[data-modal-close]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const modal = btn.closest('.modal-backdrop')
+      if (modal) {
+        modal.classList.remove('active')
+        document.body.style.overflow = ''
+      }
+    })
+  })
+
+  // Backdrop click close
+  document.querySelectorAll('.modal-backdrop').forEach((modal) => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active')
+        document.body.style.overflow = ''
+      }
+    })
+  })
+}
+
+/* ==========================================================================
+   15. Interactive Forms with Feedback (RFP, Contact, Loyalty, Booking)
+   ========================================================================== */
+function initForms() {
+  const forms = document.querySelectorAll('form[data-ajax-form]')
+  forms.forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const submitBtn = form.querySelector('button[type="submit"]')
+      const feedbackEl = form.querySelector('.form-feedback')
+      const origText = submitBtn ? submitBtn.innerHTML : 'Submit'
+
+      if (submitBtn) {
+        submitBtn.disabled = true
+        submitBtn.innerHTML = '<span class="inline-flex items-center gap-2"><svg class="animate-spin h-4 w-4 text-brand-gold" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> Processing...</span>'
+      }
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false
+          submitBtn.innerHTML = origText
+        }
+        if (feedbackEl) {
+          feedbackEl.classList.remove('hidden')
+          feedbackEl.innerHTML = `
+            <div class="p-4 bg-brand-green/10 border border-brand-green/30 rounded-sm text-brand-green text-xs font-medium flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span>Thank you. Your request has been received by our concierge team. We will be in touch shortly.</span>
+            </div>
+          `
+        }
+        form.reset()
+      }, 700)
+    })
+  })
+}
+
+/* ==========================================================================
+   16. Active Navigation Link Highlighting
+   ========================================================================== */
+function initActiveNav() {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html'
+  document.querySelectorAll('nav a, #mobile-drawer a').forEach((link) => {
+    const href = link.getAttribute('href')
+    if (href && href === currentPath) {
+      link.classList.add('active-page')
+      link.classList.remove('text-white/80', 'text-text-secondary')
+    }
+  })
+}
+

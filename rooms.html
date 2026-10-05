@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooms & Suites | Hemisphere Hotels & Resorts</title>
+  <meta name="description" content="Browse and compare rooms, beachfront chalets, and executive suites across all Hemisphere properties in Sarawak." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-charcoal': '#1C1B1A',
+            'brand-gold': '#C5A880',
+            'brand-sand': '#E8E2D9',
+            'brand-cream': '#F5F2EB',
+            'brand-stone': '#D1C7BD',
+            'brand-green': '#2D4B44',
+            'brand-slate': '#274457',
+            'bg': '#FAF8F5',
+            'surface': '#FFFFFF',
+            'surface-subtle': '#F5F2EB',
+            'text-primary': '#1C1B1A',
+            'text-secondary': '#635F5B',
+            'text-muted': '#8E8A84',
+            'text-inverse': '#FFFFFF',
+            'border': '#E4DDD4',
+            'border-subtle': '#EFECE6',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          letterSpacing: {
+            luxury: '0.25em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-bg text-text-primary antialiased selection:bg-brand-gold/20 selection:text-text-primary relative">
+  <!-- Tactile Film Grain Overlay -->
+  <div class="grain-overlay"></div>
+
+  <!-- Global Header -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 bg-gradient-to-b from-black/85 via-black/50 to-transparent text-white">
+    <!-- Announcement Bar -->
+    <aside id="announcement-bar" class="relative z-50 bg-brand-charcoal text-text-inverse text-[11px] tracking-luxury uppercase font-medium py-2.5 px-8 text-center transition-colors">
+      <div class="flex items-center justify-center gap-3">
+        <span class="opacity-90">Suite Privileges: Enjoy daily sunset cocktails and bespoke fruit platters on all suite reservations.</span>
+        <a href="offers.html" class="text-brand-gold underline underline-offset-4 hover:text-brand-cream transition-colors">View Packages</a>
+      </div>
+      <button id="dismiss-announcement-btn" class="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-text-inverse/70 hover:text-text-inverse transition-colors focus:outline-none" aria-label="Dismiss announcement">
+        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+      </button>
+    </aside>
+
+    <!-- Navigation Bar -->
+    <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-[1720px] flex items-center justify-between py-5 sm:py-6 transition-all duration-300">
+      <a href="index.html" class="group flex flex-col items-start focus:outline-none" aria-label="Hemisphere Hotels & Resorts - Home">
+        <span id="brand-wordmark" class="font-serif text-xl sm:text-2xl tracking-[0.25em] uppercase font-light text-white transition-colors duration-300">
+          Hemisphere
+        </span>
+        <span class="text-[8px] sm:text-[9px] tracking-[0.35em] uppercase font-sans text-brand-gold transition-colors duration-300">
+          Hotels & Resorts
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-7 text-xs uppercase tracking-luxury font-medium">
+        <div class="relative group">
+          <a href="stays.html" class="hover:text-brand-gold transition-colors py-2 flex items-center gap-1">
+            <span>Stays</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 group-hover:rotate-180 transition-transform"></i>
+          </a>
+          <div class="hidden group-hover:block absolute top-full left-0 pt-2 w-64 z-50">
+            <div class="bg-brand-charcoal border border-white/15 p-3 rounded-sm shadow-2xl space-y-1 text-left">
+              <a href="damai-beach-resort.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Damai Beach Resort</span>
+                <span class="text-[9px] text-white/50">Santubong Rainforest Sanctuary</span>
+              </a>
+              <a href="damai-lagoon-resort.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Damai Lagoon Resort</span>
+                <span class="text-[9px] text-white/50">Tranquil Coastal Lagoon & Spa</span>
+              </a>
+              <a href="grand-margherita.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Grand Margherita Hotel</span>
+                <span class="text-[9px] text-white/50">Historic Kuching Waterfront</span>
+              </a>
+              <a href="riverside-majestic.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Riverside Majestic Hotel</span>
+                <span class="text-[9px] text-white/50">Puteri & Astana Wings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="rooms.html" class="text-brand-gold hover:text-brand-gold transition-colors py-1 active-page">Rooms</a>
+        <a href="dining.html" class="hover:text-brand-gold transition-colors py-1">Dining</a>
+        <a href="experiences.html" class="hover:text-brand-gold transition-colors py-1">Experiences</a>
+        <a href="offers.html" class="hover:text-brand-gold transition-colors py-1">Offers</a>
+        <a href="events.html" class="hover:text-brand-gold transition-colors py-1">Events</a>
+        <a href="gallery.html" class="hover:text-brand-gold transition-colors py-1">Gallery</a>
+        <a href="about.html" class="hover:text-brand-gold transition-colors py-1">About</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <a href="index.html#booking-section" class="header-book-btn px-5 py-2.5 text-xs uppercase tracking-luxury font-medium rounded-sm border border-white/50 text-white bg-black/20 backdrop-blur-sm hover:border-white hover:bg-white/20 transition-all duration-300">
+          Book Now
+        </a>
+
+        <button id="menu-toggle-btn" type="button" class="lg:hidden p-2 text-white hover:text-brand-gold transition-colors focus:outline-none" aria-label="Open navigation menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-drawer" class="hidden fixed inset-0 z-50 flex-col bg-bg/98 backdrop-blur-xl lg:hidden overflow-y-auto">
+    <div class="flex items-center justify-between px-6 py-6 border-b border-border/60">
+      <span class="text-lg font-serif tracking-widest uppercase font-semibold text-text-primary">
+        Hemisphere
+      </span>
+      <button id="menu-close-btn" type="button" class="p-2 text-text-primary hover:text-brand-gold transition-colors focus:outline-none" aria-label="Close menu">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <div class="flex-1 px-8 py-8 flex flex-col justify-between">
+      <nav class="space-y-5">
+        <div>
+          <button id="mobile-stays-toggle" type="button" class="w-full flex items-center justify-between text-2xl font-serif text-text-primary hover:text-brand-gold py-1 transition-colors text-left">
+            <span>Stays</span>
+            <i id="mobile-stays-chevron" data-lucide="chevron-down" class="w-5 h-5 text-text-muted transition-transform duration-300"></i>
+          </button>
+          <div id="mobile-stays-submenu" class="pl-4 pt-3 pb-2 space-y-2.5 border-l border-border/80 mt-2">
+            <a href="damai-beach-resort.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Beach Resort</a>
+            <a href="damai-lagoon-resort.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Lagoon Resort</a>
+            <a href="grand-margherita.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Grand Margherita Hotel</a>
+            <a href="riverside-majestic.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Riverside Majestic (Puteri & Astana)</a>
+            <a href="stays.html" class="block text-xs uppercase tracking-luxury text-brand-gold font-semibold pt-1">All Stays Overview →</a>
+          </div>
+        </div>
+
+        <a href="rooms.html" class="block text-2xl font-serif text-brand-gold py-1">Rooms & Suites</a>
+        <a href="dining.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Dining & Bars</a>
+        <a href="experiences.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Experiences</a>
+        <a href="offers.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Offers & Packages</a>
+        <a href="events.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Events & Weddings</a>
+        <a href="gallery.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Gallery</a>
+        <a href="loyalty.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Loyalty Recognition</a>
+        <a href="about.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">About & Contact</a>
+      </nav>
+
+      <div class="pt-6 border-t border-border/80">
+        <a href="index.html#booking-section" class="block w-full py-3.5 text-center bg-brand-charcoal text-white text-xs uppercase tracking-luxury font-medium rounded-sm shadow-md">
+          Find Your Stay
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         Hero Banner
+         ========================================================================== -->
+    <section class="relative w-full min-h-[50vh] sm:min-h-[55vh] flex items-center justify-center overflow-hidden bg-brand-charcoal text-white select-none">
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2400&q=90" alt="Accommodations" class="w-full h-full object-cover scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/65"></div>
+      </div>
+
+      <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl relative z-10 pt-36 pb-20 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-black/40 backdrop-blur-md border border-white/20 rounded-full mb-5">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+          <span class="text-[10px] sm:text-xs tracking-[0.3em] uppercase font-sans text-brand-gold font-medium">Accommodations</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif text-white font-light tracking-tight leading-tight max-w-4xl mx-auto mb-4">
+          Rooms & Suites.
+          <span class="block italic font-normal text-brand-sand">Designed for unhurried comfort.</span>
+        </h1>
+        <p class="text-sm sm:text-base font-light text-white/85 max-w-2xl mx-auto font-sans leading-relaxed">
+          From rustic beachfront chalets framed by the Santubong canopy to contemporary skyline suites above the Sarawak River.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Interactive Rooms Catalog
+         ========================================================================== -->
+    <section class="py-16 sm:py-20 bg-bg overflow-hidden">
+      <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
+        <!-- Filter Controls -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10 pb-6 border-b border-border/80">
+          <div>
+            <span class="text-xs uppercase tracking-luxury text-brand-gold font-semibold block mb-1">Filter by Property</span>
+            <p class="text-sm text-text-secondary">Explore bespoke accommodations across our curated collection.</p>
+          </div>
+          <div class="flex items-center gap-2 overflow-x-auto pb-2" data-tab-group data-tab-target="#rooms-grid">
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-brand-charcoal text-white shadow-sm whitespace-nowrap" data-tab-filter="all">All Stays</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary whitespace-nowrap" data-tab-filter="damai-beach">Damai Beach</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary whitespace-nowrap" data-tab-filter="damai-lagoon">Damai Lagoon</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary whitespace-nowrap" data-tab-filter="grand-margherita">Grand Margherita</button>
+            <button type="button" class="tab-btn px-4 py-2 text-xs uppercase tracking-luxury font-medium rounded-sm bg-surface border border-border text-text-secondary hover:text-text-primary whitespace-nowrap" data-tab-filter="riverside-majestic">Riverside Majestic</button>
+          </div>
+        </div>
+
+        <!-- Rooms Grid -->
+        <div id="rooms-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Room 1: Damai Beach Beachfront Chalet -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="damai-beach">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80" alt="Beachfront Chalet" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Damai Beach Resort</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>48 m² • King / Twin</span>
+                  <span class="text-brand-gold font-medium">Sea Facing</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Beachfront Chalet</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">Traditional Bornean architectural aesthetics perched steps from the coastline with private veranda overlooking the sea.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="wifi" class="w-3.5 h-3.5 text-brand-gold"></i> High-Speed WiFi</span>
+                  <span class="flex items-center gap-1"><i data-lucide="coffee" class="w-3.5 h-3.5 text-brand-gold"></i> Nespresso</span>
+                  <span class="flex items-center gap-1"><i data-lucide="tv" class="w-3.5 h-3.5 text-brand-gold"></i> 55" Smart TV</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 380<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=damai-beach#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room 2: Damai Beach Baruk Suite -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="damai-beach">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80" alt="Baruk Suite" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Damai Beach Resort</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>85 m² • King Bed</span>
+                  <span class="text-brand-gold font-medium">Bidayuh Roundhouse</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Baruk Heritage Suite</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">An iconic indigenous roundhouse suite featuring soaring timber ceilings, freestanding sunken tub, and rainforest panorama.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="bath" class="w-3.5 h-3.5 text-brand-gold"></i> Sunken Tub</span>
+                  <span class="flex items-center gap-1"><i data-lucide="sun" class="w-3.5 h-3.5 text-brand-gold"></i> Sun Deck</span>
+                  <span class="flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5 text-brand-gold"></i> Up to 3 Guests</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 650<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=damai-beach#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room 3: Damai Lagoon Serene Suite -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="damai-lagoon">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80" alt="Serene Lagoon Suite" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Damai Lagoon Resort</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>54 m² • King Bed</span>
+                  <span class="text-brand-gold font-medium">Lagoon Horizon</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Serene Lagoon Suite</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">Refined coastal sanctuary with warm timber floors, a private daybed terrace, and unobstructed sunset vistas over the lagoon.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i> Spa Inclusions</span>
+                  <span class="flex items-center gap-1"><i data-lucide="eye" class="w-3.5 h-3.5 text-brand-gold"></i> Lagoon View</span>
+                  <span class="flex items-center gap-1"><i data-lucide="wind" class="w-3.5 h-3.5 text-brand-gold"></i> Daybed Balcony</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 520<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=damai-lagoon#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room 4: Damai Lagoon Pool Villa -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="damai-lagoon">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80" alt="Private Pool Villa" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Damai Lagoon Resort</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>95 m² • King Bed</span>
+                  <span class="text-brand-gold font-medium">Private Plunge Pool</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Lagoon Pool Villa</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">Secluded tropical luxury boasting an enclosed private plunge pool courtyard, outdoor garden shower, and personalized butler service.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="droplet" class="w-3.5 h-3.5 text-brand-gold"></i> Plunge Pool</span>
+                  <span class="flex items-center gap-1"><i data-lucide="wine" class="w-3.5 h-3.5 text-brand-gold"></i> Mini Bar</span>
+                  <span class="flex items-center gap-1"><i data-lucide="user-check" class="w-3.5 h-3.5 text-brand-gold"></i> Butler Concierge</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 980<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=damai-lagoon#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room 5: Grand Margherita Deluxe Waterfront -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="grand-margherita">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Deluxe Waterfront Room" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Grand Margherita Hotel</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>38 m² • King / Twin</span>
+                  <span class="text-brand-gold font-medium">Kuching Waterfront</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Deluxe Waterfront Room</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">Sweeping floor-to-ceiling views of the Sarawak River and historical Kuching skyline. Generous marble work desk and premium linens.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="compass" class="w-3.5 h-3.5 text-brand-gold"></i> River Views</span>
+                  <span class="flex items-center gap-1"><i data-lucide="coffee" class="w-3.5 h-3.5 text-brand-gold"></i> Tea Maker</span>
+                  <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-gold"></i> Safe Deposit</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 340<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=grand-margherita#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room 6: Grand Margherita Executive Suite -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="grand-margherita">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80" alt="Executive Suite" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Grand Margherita Hotel</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>68 m² • King Master</span>
+                  <span class="text-brand-gold font-medium">Executive Living Room</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Executive River Suite</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">Spacious dual-zone suite with separate living and dining salon, powder room, deep soaking bathtub, and panoramic waterfront corner views.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="layout" class="w-3.5 h-3.5 text-brand-gold"></i> Living Lounge</span>
+                  <span class="flex items-center gap-1"><i data-lucide="bath" class="w-3.5 h-3.5 text-brand-gold"></i> Soaking Tub</span>
+                  <span class="flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i> VIP Perks</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 580<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=grand-margherita#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room 7: Riverside Majestic Puteri Club Room -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="riverside-majestic">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80" alt="Puteri Club Room" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Riverside Majestic Puteri</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>38 m² • King Bed</span>
+                  <span class="text-brand-gold font-medium">Club Floor Privileges</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Puteri Club Executive</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">Warm hardwood elegance with exclusive access to the Puteri Club Lounge, daily breakfast, afternoon high tea, and evening canapés.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="coffee" class="w-3.5 h-3.5 text-brand-gold"></i> Club Lounge</span>
+                  <span class="flex items-center gap-1"><i data-lucide="wine" class="w-3.5 h-3.5 text-brand-gold"></i> High Tea</span>
+                  <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-gold"></i> Late Checkout</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 460<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=riverside-majestic-puteri#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room 8: Riverside Majestic Astana Contemporary Suite -->
+          <article class="group bg-surface border border-border/80 rounded-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all" data-tab-item="riverside-majestic">
+            <div class="relative overflow-hidden aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80" alt="Astana Suite" class="w-full h-full object-cover luxury-image-zoom" loading="lazy" />
+              <span class="absolute top-4 left-4 text-[10px] uppercase tracking-luxury font-medium px-3 py-1 bg-surface/90 backdrop-blur-md rounded-sm">Riverside Majestic Astana</span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-2">
+                  <span>72 m² • King Bed</span>
+                  <span class="text-brand-gold font-medium">Boutique High-Tech</span>
+                </div>
+                <h3 class="text-2xl font-serif text-text-primary mb-2 group-hover:text-brand-gold transition-colors">Astana Skyline Suite</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-6 font-light">Modern architectural luxury with smart-touch room environment automation, dual vanity marble bathroom, and 180-degree river views.</p>
+                <div class="flex items-center gap-3 text-xs text-text-muted pb-4 border-b border-border-subtle mb-4">
+                  <span class="flex items-center gap-1"><i data-lucide="cpu" class="w-3.5 h-3.5 text-brand-gold"></i> Smart Tech</span>
+                  <span class="flex items-center gap-1"><i data-lucide="eye" class="w-3.5 h-3.5 text-brand-gold"></i> Skyline Vista</span>
+                  <span class="flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i> Luxury Tub</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <span class="text-[10px] uppercase tracking-luxury text-text-muted block">From</span>
+                  <strong class="font-serif text-lg text-text-primary">MYR 680<span class="text-xs font-sans text-text-muted font-normal"> / night</span></strong>
+                </div>
+                <a href="index.html?hotel=riverside-majestic-astana#booking-section" class="px-5 py-2.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm">Book</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-brand-charcoal text-text-inverse pt-14 sm:pt-16 pb-10 sm:pb-12 border-t border-brand-charcoal/90">
+    <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 sm:pb-12 border-b border-white/10">
+        <!-- Brand Column -->
+        <div class="lg:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block focus:outline-none">
+            <span class="font-serif text-2xl tracking-[0.25em] uppercase font-light text-white block">Hemisphere</span>
+            <span class="text-[9px] tracking-[0.35em] uppercase font-sans text-brand-gold">Hotels & Resorts</span>
+          </a>
+          <p class="text-xs text-text-inverse/70 max-w-sm font-light leading-relaxed pt-2">
+            Unifying Sarawak’s premier coastal sanctuaries and landmark city retreats under one philosophy of timeless hospitality and authentic discovery.
+          </p>
+          <div class="pt-3 flex items-center space-x-6 text-[11px] uppercase tracking-luxury text-white/60">
+            <a href="#" class="hover:text-brand-gold transition-colors">Instagram</a>
+            <a href="#" class="hover:text-brand-gold transition-colors">Facebook</a>
+            <a href="#" class="hover:text-brand-gold transition-colors">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- Stays Column -->
+        <div class="lg:col-span-3 space-y-3.5">
+          <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Stays</h4>
+          <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
+            <li><a href="damai-beach-resort.html" class="hover:text-brand-gold transition-colors">Damai Beach Resort</a></li>
+            <li><a href="damai-lagoon-resort.html" class="hover:text-brand-gold transition-colors">Damai Lagoon Resort</a></li>
+            <li><a href="grand-margherita.html" class="hover:text-brand-gold transition-colors">Grand Margherita Hotel</a></li>
+            <li><a href="riverside-majestic.html" class="hover:text-brand-gold transition-colors">Riverside Majestic (Puteri & Astana)</a></li>
+            <li><a href="stays.html" class="hover:text-brand-gold transition-colors font-medium text-brand-gold">All Stays Directory →</a></li>
+          </ul>
+        </div>
+
+        <!-- Explore Column -->
+        <div class="lg:col-span-3 space-y-3.5">
+          <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Explore</h4>
+          <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
+            <li><a href="rooms.html" class="hover:text-brand-gold transition-colors">Rooms & Suites</a></li>
+            <li><a href="dining.html" class="hover:text-brand-gold transition-colors">Dining & Bars</a></li>
+            <li><a href="experiences.html" class="hover:text-brand-gold transition-colors">Curated Pathways</a></li>
+            <li><a href="offers.html" class="hover:text-brand-gold transition-colors">Privileges & Packages</a></li>
+            <li><a href="events.html" class="hover:text-brand-gold transition-colors">Meetings & Weddings</a></li>
+            <li><a href="gallery.html" class="hover:text-brand-gold transition-colors">Media Gallery</a></li>
+            <li><a href="loyalty.html" class="hover:text-brand-gold transition-colors">Hemisphere Loyalty</a></li>
+          </ul>
+        </div>
+
+        <!-- About Column -->
+        <div class="lg:col-span-2 space-y-3.5">
+          <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">About</h4>
+          <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
+            <li><a href="about.html" class="hover:text-brand-gold transition-colors">Our Philosophy</a></li>
+            <li><a href="about.html#sedc-heritage" class="hover:text-brand-gold transition-colors">SEDC Sarawak Heritage</a></li>
+            <li><a href="about.html#contact-directory" class="hover:text-brand-gold transition-colors">Contact & Directory</a></li>
+            <li><a href="index.html#booking-section" class="hover:text-brand-gold transition-colors">Direct Reservations</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-inverse/50">
+        <p>© 2026 Hemisphere Hotels & Resorts. All rights reserved.</p>
+        <div class="flex items-center space-x-6">
+          <a href="#" class="hover:text-brand-gold transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand-gold transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-brand-gold transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla JS Engine -->
+  <script src="js/main.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

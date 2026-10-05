@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meetings, Conventions & Weddings | Hemisphere Hotels & Resorts</title>
+  <meta name="description" content="Plan high-impact conferences, executive board meetings, and dream beachfront weddings across Hemisphere's event venues in Sarawak." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-charcoal': '#1C1B1A',
+            'brand-gold': '#C5A880',
+            'brand-sand': '#E8E2D9',
+            'brand-cream': '#F5F2EB',
+            'brand-stone': '#D1C7BD',
+            'brand-green': '#2D4B44',
+            'brand-slate': '#274457',
+            'bg': '#FAF8F5',
+            'surface': '#FFFFFF',
+            'surface-subtle': '#F5F2EB',
+            'text-primary': '#1C1B1A',
+            'text-secondary': '#635F5B',
+            'text-muted': '#8E8A84',
+            'text-inverse': '#FFFFFF',
+            'border': '#E4DDD4',
+            'border-subtle': '#EFECE6',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          letterSpacing: {
+            luxury: '0.25em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-bg text-text-primary antialiased selection:bg-brand-gold/20 selection:text-text-primary relative">
+  <!-- Tactile Film Grain Overlay -->
+  <div class="grain-overlay"></div>
+
+  <!-- Global Header -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 bg-gradient-to-b from-black/85 via-black/50 to-transparent text-white">
+    <!-- Announcement Bar -->
+    <aside id="announcement-bar" class="relative z-50 bg-brand-charcoal text-text-inverse text-[11px] tracking-luxury uppercase font-medium py-2.5 px-8 text-center transition-colors">
+      <div class="flex items-center justify-center gap-3">
+        <span class="opacity-90">Corporate Group Advantage: Up to 15% delegate discount and complimentary VIP suite upgrade on group bookings.</span>
+        <a href="#rfp-section" class="text-brand-gold underline underline-offset-4 hover:text-brand-cream transition-colors">Submit RFP</a>
+      </div>
+      <button id="dismiss-announcement-btn" class="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-text-inverse/70 hover:text-text-inverse transition-colors focus:outline-none" aria-label="Dismiss announcement">
+        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+      </button>
+    </aside>
+
+    <!-- Navigation Bar -->
+    <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-[1720px] flex items-center justify-between py-5 sm:py-6 transition-all duration-300">
+      <a href="index.html" class="group flex flex-col items-start focus:outline-none" aria-label="Hemisphere Hotels & Resorts - Home">
+        <span id="brand-wordmark" class="font-serif text-xl sm:text-2xl tracking-[0.25em] uppercase font-light text-white transition-colors duration-300">
+          Hemisphere
+        </span>
+        <span class="text-[8px] sm:text-[9px] tracking-[0.35em] uppercase font-sans text-brand-gold transition-colors duration-300">
+          Hotels & Resorts
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-7 text-xs uppercase tracking-luxury font-medium">
+        <div class="relative group">
+          <a href="stays.html" class="hover:text-brand-gold transition-colors py-2 flex items-center gap-1">
+            <span>Stays</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 group-hover:rotate-180 transition-transform"></i>
+          </a>
+          <div class="hidden group-hover:block absolute top-full left-0 pt-2 w-64 z-50">
+            <div class="bg-brand-charcoal border border-white/15 p-3 rounded-sm shadow-2xl space-y-1 text-left">
+              <a href="damai-beach-resort.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Damai Beach Resort</span>
+                <span class="text-[9px] text-white/50">Santubong Rainforest Sanctuary</span>
+              </a>
+              <a href="damai-lagoon-resort.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Damai Lagoon Resort</span>
+                <span class="text-[9px] text-white/50">Tranquil Coastal Lagoon & Spa</span>
+              </a>
+              <a href="grand-margherita.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Grand Margherita Hotel</span>
+                <span class="text-[9px] text-white/50">Historic Kuching Waterfront</span>
+              </a>
+              <a href="riverside-majestic.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Riverside Majestic Hotel</span>
+                <span class="text-[9px] text-white/50">Puteri & Astana Wings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="rooms.html" class="hover:text-brand-gold transition-colors py-1">Rooms</a>
+        <a href="dining.html" class="hover:text-brand-gold transition-colors py-1">Dining</a>
+        <a href="experiences.html" class="hover:text-brand-gold transition-colors py-1">Experiences</a>
+        <a href="offers.html" class="hover:text-brand-gold transition-colors py-1">Offers</a>
+        <a href="events.html" class="text-brand-gold hover:text-brand-gold transition-colors py-1 active-page">Events</a>
+        <a href="gallery.html" class="hover:text-brand-gold transition-colors py-1">Gallery</a>
+        <a href="about.html" class="hover:text-brand-gold transition-colors py-1">About</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <a href="#rfp-section" class="header-book-btn px-5 py-2.5 text-xs uppercase tracking-luxury font-medium rounded-sm border border-white/50 text-white bg-black/20 backdrop-blur-sm hover:border-white hover:bg-white/20 transition-all duration-300">
+          Enquire
+        </a>
+
+        <button id="menu-toggle-btn" type="button" class="lg:hidden p-2 text-white hover:text-brand-gold transition-colors focus:outline-none" aria-label="Open navigation menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-drawer" class="hidden fixed inset-0 z-50 flex-col bg-bg/98 backdrop-blur-xl lg:hidden overflow-y-auto">
+    <div class="flex items-center justify-between px-6 py-6 border-b border-border/60">
+      <span class="text-lg font-serif tracking-widest uppercase font-semibold text-text-primary">
+        Hemisphere
+      </span>
+      <button id="menu-close-btn" type="button" class="p-2 text-text-primary hover:text-brand-gold transition-colors focus:outline-none" aria-label="Close menu">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <div class="flex-1 px-8 py-8 flex flex-col justify-between">
+      <nav class="space-y-5">
+        <div>
+          <button id="mobile-stays-toggle" type="button" class="w-full flex items-center justify-between text-2xl font-serif text-text-primary hover:text-brand-gold py-1 transition-colors text-left">
+            <span>Stays</span>
+            <i id="mobile-stays-chevron" data-lucide="chevron-down" class="w-5 h-5 text-text-muted transition-transform duration-300"></i>
+          </button>
+          <div id="mobile-stays-submenu" class="pl-4 pt-3 pb-2 space-y-2.5 border-l border-border/80 mt-2">
+            <a href="damai-beach-resort.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Beach Resort</a>
+            <a href="damai-lagoon-resort.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Lagoon Resort</a>
+            <a href="grand-margherita.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Grand Margherita Hotel</a>
+            <a href="riverside-majestic.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Riverside Majestic (Puteri & Astana)</a>
+            <a href="stays.html" class="block text-xs uppercase tracking-luxury text-brand-gold font-semibold pt-1">All Stays Overview →</a>
+          </div>
+        </div>
+
+        <a href="rooms.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Rooms & Suites</a>
+        <a href="dining.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Dining & Bars</a>
+        <a href="experiences.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Experiences</a>
+        <a href="offers.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Offers & Packages</a>
+        <a href="events.html" class="block text-2xl font-serif text-brand-gold py-1">Events & Weddings</a>
+        <a href="gallery.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Gallery</a>
+        <a href="loyalty.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Loyalty Recognition</a>
+        <a href="about.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">About & Contact</a>
+      </nav>
+
+      <div class="pt-6 border-t border-border/80">
+        <a href="#rfp-section" class="block w-full py-3.5 text-center bg-brand-charcoal text-white text-xs uppercase tracking-luxury font-medium rounded-sm shadow-md">
+          Plan An Event
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         Hero Banner
+         ========================================================================== -->
+    <section class="relative w-full min-h-[50vh] sm:min-h-[55vh] flex items-center justify-center overflow-hidden bg-brand-charcoal text-white select-none">
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=90" alt="Events and Weddings" class="w-full h-full object-cover scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/65"></div>
+      </div>
+
+      <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl relative z-10 pt-36 pb-20 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-black/40 backdrop-blur-md border border-white/20 rounded-full mb-5">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+          <span class="text-[10px] sm:text-xs tracking-[0.3em] uppercase font-sans text-brand-gold font-medium">Conventions & Celebrations</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif text-white font-light tracking-tight leading-tight max-w-4xl mx-auto mb-4">
+          Gather. Celebrate. Connect.
+          <span class="block italic font-normal text-brand-sand">Unforgettable occasions in Sarawak.</span>
+        </h1>
+        <p class="text-sm sm:text-base font-light text-white/85 max-w-2xl mx-auto font-sans leading-relaxed">
+          From the largest column-free ballroom in Kuching to romantic sunset beachfront wedding lawns framed by Mount Santubong.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Venues & Capacities Table
+         ========================================================================== -->
+    <section class="py-16 sm:py-20 bg-bg overflow-hidden">
+      <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs uppercase tracking-luxury text-brand-gold font-semibold block mb-2">Venues & Capacities</span>
+          <h2 class="text-3xl sm:text-4xl font-serif text-text-primary">Flexible spaces for every scale.</h2>
+          <p class="text-xs text-text-secondary mt-2">Comprehensive capacity matrix across all Hemisphere properties.</p>
+        </div>
+
+        <div class="table-container bg-surface border border-border rounded-sm shadow-md overflow-hidden mb-16">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-brand-charcoal text-white uppercase tracking-luxury border-b border-border">
+                <th class="p-4 sm:p-5 font-medium">Venue Name</th>
+                <th class="p-4 sm:p-5 font-medium">Hotel Location</th>
+                <th class="p-4 sm:p-5 font-medium">Area (m²)</th>
+                <th class="p-4 sm:p-5 font-medium">Theatre</th>
+                <th class="p-4 sm:p-5 font-medium">Banquet</th>
+                <th class="p-4 sm:p-5 font-medium">Cocktail</th>
+                <th class="p-4 sm:p-5 font-medium">Key Feature</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border/60">
+              <tr class="hover:bg-surface-subtle/50 transition-colors">
+                <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Grand Ballroom</td>
+                <td class="p-4 sm:p-5 text-text-secondary">Grand Margherita Hotel</td>
+                <td class="p-4 sm:p-5 text-text-secondary">1,020 m²</td>
+                <td class="p-4 sm:p-5 font-semibold text-text-primary">1,200</td>
+                <td class="p-4 sm:p-5 text-text-secondary">800</td>
+                <td class="p-4 sm:p-5 text-text-secondary">1,400</td>
+                <td class="p-4 sm:p-5 text-brand-gold font-medium">Column-Free, River View Pre-Function</td>
+              </tr>
+              <tr class="hover:bg-surface-subtle/50 transition-colors">
+                <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Puteri Grand Ballroom</td>
+                <td class="p-4 sm:p-5 text-text-secondary">Riverside Majestic Puteri</td>
+                <td class="p-4 sm:p-5 text-text-secondary">950 m²</td>
+                <td class="p-4 sm:p-5 font-semibold text-text-primary">1,000</td>
+                <td class="p-4 sm:p-5 text-text-secondary">700</td>
+                <td class="p-4 sm:p-5 text-text-secondary">1,200</td>
+                <td class="p-4 sm:p-5 text-brand-gold font-medium">High Ceilings, Dedicated Convention Wing</td>
+              </tr>
+              <tr class="hover:bg-surface-subtle/50 transition-colors">
+                <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Astana Conference Centre</td>
+                <td class="p-4 sm:p-5 text-text-secondary">Riverside Majestic Astana</td>
+                <td class="p-4 sm:p-5 text-text-secondary">520 m²</td>
+                <td class="p-4 sm:p-5 font-semibold text-text-primary">500</td>
+                <td class="p-4 sm:p-5 text-text-secondary">350</td>
+                <td class="p-4 sm:p-5 text-text-secondary">600</td>
+                <td class="p-4 sm:p-5 text-brand-gold font-medium">Modern Tech, Hybrid Video Walls</td>
+              </tr>
+              <tr class="hover:bg-surface-subtle/50 transition-colors">
+                <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Santubong Rainforest Ballroom</td>
+                <td class="p-4 sm:p-5 text-text-secondary">Damai Beach Resort</td>
+                <td class="p-4 sm:p-5 text-text-secondary">680 m²</td>
+                <td class="p-4 sm:p-5 font-semibold text-text-primary">600</td>
+                <td class="p-4 sm:p-5 text-text-secondary">450</td>
+                <td class="p-4 sm:p-5 text-text-secondary">750</td>
+                <td class="p-4 sm:p-5 text-brand-gold font-medium">Panoramic Jungle & Coastal Vista</td>
+              </tr>
+              <tr class="hover:bg-surface-subtle/50 transition-colors">
+                <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Lagoon Sunset Pavilion & Lawn</td>
+                <td class="p-4 sm:p-5 text-text-secondary">Damai Lagoon Resort</td>
+                <td class="p-4 sm:p-5 text-text-secondary">Outdoor / 800 m²</td>
+                <td class="p-4 sm:p-5 font-semibold text-text-primary">350</td>
+                <td class="p-4 sm:p-5 text-text-secondary">250</td>
+                <td class="p-4 sm:p-5 text-text-secondary">400</td>
+                <td class="p-4 sm:p-5 text-brand-gold font-medium">Turquoise Lagoon Beachfront Backdrop</td>
+              </tr>
+              <tr class="hover:bg-surface-subtle/50 transition-colors">
+                <td class="p-4 sm:p-5 font-medium font-serif text-sm sm:text-base text-text-primary">Rajah Court Boardroom Suites</td>
+                <td class="p-4 sm:p-5 text-text-secondary">Grand Margherita Hotel</td>
+                <td class="p-4 sm:p-5 text-text-secondary">45 – 90 m²</td>
+                <td class="p-4 sm:p-5 font-semibold text-text-primary">40</td>
+                <td class="p-4 sm:p-5 text-text-secondary">24</td>
+                <td class="p-4 sm:p-5 text-text-secondary">30</td>
+                <td class="p-4 sm:p-5 text-brand-gold font-medium">Intimate Executive Board Meetings</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Weddings & Celebrations Highlight -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-8 border-t border-border/80">
+          <div class="lg:col-span-6 space-y-5">
+            <span class="text-xs uppercase tracking-luxury text-brand-gold font-semibold">Dream Weddings</span>
+            <h2 class="text-3xl sm:text-4xl font-serif text-text-primary">Say "I Do" framed by sea horizons.</h2>
+            <p class="text-sm text-text-secondary leading-relaxed font-light">
+              Whether you envision an intimate barefoot vow exchange on the golden sands of Santubong or a lavish multi-course gala banquet in the Grand Ballroom of Kuching Waterfront, our wedding specialists oversee every detail from artisanal florist arches to bespoke menus.
+            </p>
+            <div class="space-y-2 text-xs text-text-muted">
+              <div class="flex items-center gap-2"><i data-lucide="heart" class="w-4 h-4 text-brand-gold"></i><span>Customized bridal suite inclusions with champagne and breakfast in bed</span></div>
+              <div class="flex items-center gap-2"><i data-lucide="camera" class="w-4 h-4 text-brand-gold"></i><span>Exclusive pre-wedding photography permissions across resort grounds</span></div>
+              <div class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-brand-gold"></i><span>Tasting sessions with our Executive Chinese & Western banquet chefs</span></div>
+            </div>
+          </div>
+          <div class="lg:col-span-6">
+            <div class="relative overflow-hidden rounded-sm shadow-xl aspect-[16/11]">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=85" alt="Beachfront Wedding" class="w-full h-full object-cover luxury-image-zoom" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Request For Proposal (RFP) Form
+         ========================================================================== -->
+    <section id="rfp-section" class="py-16 sm:py-20 bg-surface-subtle/50 border-t border-border/80 overflow-hidden">
+      <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-4xl">
+        <div class="bg-surface p-8 sm:p-12 border border-border shadow-xl rounded-sm">
+          <div class="text-center max-w-xl mx-auto mb-8">
+            <span class="text-xs uppercase tracking-luxury text-brand-gold font-semibold">Start Planning</span>
+            <h2 class="text-3xl sm:text-4xl font-serif text-text-primary mt-1">Request for Proposal (RFP)</h2>
+            <p class="text-xs text-text-secondary mt-2">Submit your event details. Our corporate sales team will reply with a customized proposal within 24 hours.</p>
+          </div>
+
+          <form data-ajax-form class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Event Type</label>
+                <select required class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary">
+                  <option value="Conference / Convention">Convention / Corporate Conference</option>
+                  <option value="Executive Meeting">Board Meeting / Seminar</option>
+                  <option value="Wedding Reception">Wedding Ceremony & Reception</option>
+                  <option value="Gala Dinner">Annual Gala / Banqueting</option>
+                  <option value="Team Building">Outdoor Team Building / Retreat</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Preferred Location</label>
+                <select required class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary">
+                  <option value="Any Property">Open to Best Recommendation</option>
+                  <option value="Grand Margherita Hotel">Grand Margherita Hotel (Kuching)</option>
+                  <option value="Riverside Majestic Hotel">Riverside Majestic Hotel (Kuching)</option>
+                  <option value="Damai Beach Resort">Damai Beach Resort (Santubong)</option>
+                  <option value="Damai Lagoon Resort">Damai Lagoon Resort (Santubong)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Estimated Guests</label>
+                <input type="number" min="10" placeholder="e.g. 150" required class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Target Date</label>
+                <input type="date" required class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Guest Rooms Needed?</label>
+                <select class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary">
+                  <option value="Yes">Yes (Rooms Required)</option>
+                  <option value="No">No (Venue Only)</option>
+                  <option value="Undecided">Undecided</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Contact Name</label>
+                <input type="text" placeholder="Full Name" required class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Company / Organization</label>
+                <input type="text" placeholder="Organization" class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Email Address</label>
+                <input type="email" placeholder="name@company.com" required class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[10px] uppercase tracking-luxury text-text-muted font-medium mb-1">Event Requirements & Details</label>
+              <textarea rows="3" placeholder="Describe your program, AV requirements, catering preferences, or special requests..." class="luxury-input w-full p-3 bg-surface-subtle border border-border rounded-sm text-xs text-text-primary"></textarea>
+            </div>
+
+            <div class="form-feedback hidden"></div>
+
+            <div class="pt-2 text-center">
+              <button type="submit" class="px-10 py-3.5 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 text-xs uppercase tracking-luxury font-medium rounded-sm shadow-md">
+                Submit RFP Enquiry
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-brand-charcoal text-text-inverse pt-14 sm:pt-16 pb-10 sm:pb-12 border-t border-brand-charcoal/90">
+    <div class="mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 sm:pb-12 border-b border-white/10">
+        <!-- Brand Column -->
+        <div class="lg:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block focus:outline-none">
+            <span class="font-serif text-2xl tracking-[0.25em] uppercase font-light text-white block">Hemisphere</span>
+            <span class="text-[9px] tracking-[0.35em] uppercase font-sans text-brand-gold">Hotels & Resorts</span>
+          </a>
+          <p class="text-xs text-text-inverse/70 max-w-sm font-light leading-relaxed pt-2">
+            Unifying Sarawak’s premier coastal sanctuaries and landmark city retreats under one philosophy of timeless hospitality and authentic discovery.
+          </p>
+          <div class="pt-3 flex items-center space-x-6 text-[11px] uppercase tracking-luxury text-white/60">
+            <a href="#" class="hover:text-brand-gold transition-colors">Instagram</a>
+            <a href="#" class="hover:text-brand-gold transition-colors">Facebook</a>
+            <a href="#" class="hover:text-brand-gold transition-colors">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- Stays Column -->
+        <div class="lg:col-span-3 space-y-3.5">
+          <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Stays</h4>
+          <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
+            <li><a href="damai-beach-resort.html" class="hover:text-brand-gold transition-colors">Damai Beach Resort</a></li>
+            <li><a href="damai-lagoon-resort.html" class="hover:text-brand-gold transition-colors">Damai Lagoon Resort</a></li>
+            <li><a href="grand-margherita.html" class="hover:text-brand-gold transition-colors">Grand Margherita Hotel</a></li>
+            <li><a href="riverside-majestic.html" class="hover:text-brand-gold transition-colors">Riverside Majestic (Puteri & Astana)</a></li>
+            <li><a href="stays.html" class="hover:text-brand-gold transition-colors font-medium text-brand-gold">All Stays Directory →</a></li>
+          </ul>
+        </div>
+
+        <!-- Explore Column -->
+        <div class="lg:col-span-3 space-y-3.5">
+          <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Explore</h4>
+          <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
+            <li><a href="rooms.html" class="hover:text-brand-gold transition-colors">Rooms & Suites</a></li>
+            <li><a href="dining.html" class="hover:text-brand-gold transition-colors">Dining & Bars</a></li>
+            <li><a href="experiences.html" class="hover:text-brand-gold transition-colors">Curated Pathways</a></li>
+            <li><a href="offers.html" class="hover:text-brand-gold transition-colors">Privileges & Packages</a></li>
+            <li><a href="events.html" class="hover:text-brand-gold transition-colors">Meetings & Weddings</a></li>
+            <li><a href="gallery.html" class="hover:text-brand-gold transition-colors">Media Gallery</a></li>
+            <li><a href="loyalty.html" class="hover:text-brand-gold transition-colors">Hemisphere Loyalty</a></li>
+          </ul>
+        </div>
+
+        <!-- About Column -->
+        <div class="lg:col-span-2 space-y-3.5">
+          <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">About</h4>
+          <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
+            <li><a href="about.html" class="hover:text-brand-gold transition-colors">Our Philosophy</a></li>
+            <li><a href="about.html#sedc-heritage" class="hover:text-brand-gold transition-colors">SEDC Sarawak Heritage</a></li>
+            <li><a href="about.html#contact-directory" class="hover:text-brand-gold transition-colors">Contact & Directory</a></li>
+            <li><a href="index.html#booking-section" class="hover:text-brand-gold transition-colors">Direct Reservations</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-inverse/50">
+        <p>© 2026 Hemisphere Hotels & Resorts. All rights reserved.</p>
+        <div class="flex items-center space-x-6">
+          <a href="#" class="hover:text-brand-gold transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand-gold transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-brand-gold transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla JS Engine -->
+  <script src="js/main.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

@@ -173,3 +173,204 @@ body {
   pointer-events: none;
   transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
 }
+
+/* Modal & Lightbox Styles */
+.modal-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  transform: scale(0.95) translateY(15px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Lightbox specific */
+#lightbox-modal {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Custom Table scroll */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Form input focus styling */
+.luxury-input {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.luxury-input:focus {
+  border-color: var(--color-brand-gold);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--color-brand-gold);
+}
+
+/* Active navigation link indicator */
+.nav-link.active-page {
+  color: var(--color-brand-gold) !important;
+  position: relative;
+}
+.nav-link.active-page::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: var(--color-brand-gold);
+}
+
+/* ==========================================================================
+   Luxury Header & Mobile Navigation Architecture
+   ========================================================================== */
+
+/* Header Base Setup */
+#main-header {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Desktop Header Book Button */
+@media (min-width: 1024px) {
+  .header-book-btn {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+  }
+  .header-book-btn:hover {
+    background-color: var(--color-brand-gold);
+    color: var(--color-brand-charcoal);
+    border-color: var(--color-brand-gold);
+  }
+}
+
+/* Mobile Navbar Solid Luxury Solution (< 1024px)
+   Eliminates all transparency and glassmorphism so content underneath never mixes */
+@media (max-width: 1023px) {
+  #main-header {
+    background-color: var(--color-brand-charcoal) !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.25) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Compact padding on mobile viewports */
+  #main-header > div:not(#announcement-bar) {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* Announcement Bar on Mobile */
+  #announcement-bar {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+    padding-left: 1rem !important;
+    padding-right: 2.25rem !important;
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.15em !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  #announcement-bar .flex {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.35rem !important;
+  }
+
+  /* Brand Typography Sharp Contrast */
+  #main-header #brand-wordmark {
+    color: #FFFFFF !important;
+  }
+
+  /* High-Contrast Luxury Gold "Book Now" CTA on Mobile */
+  #main-header a[href*="booking"],
+  #main-header .header-book-btn {
+    background-color: var(--color-brand-gold) !important;
+    color: var(--color-brand-charcoal) !important;
+    border: 1px solid var(--color-brand-gold) !important;
+    font-weight: 600 !important;
+    padding: 0.45rem 0.95rem !important;
+    font-size: 11px !important;
+    letter-spacing: 0.15em !important;
+    border-radius: 2px !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 2px 8px rgba(197, 168, 128, 0.35) !important;
+    transition: all 0.25s ease !important;
+  }
+
+  #main-header a[href*="booking"]:active,
+  #main-header .header-book-btn:active {
+    background-color: var(--color-brand-cream) !important;
+  }
+
+  /* High-Contrast Accessible Hamburger Menu Button */
+  #menu-toggle-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.45rem !important;
+    border-radius: 4px !important;
+    color: #FFFFFF !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    transition: all 0.2s ease !important;
+  }
+
+  #menu-toggle-btn:active {
+    background-color: rgba(197, 168, 128, 0.25) !important;
+    border-color: var(--color-brand-gold) !important;
+    color: var(--color-brand-gold) !important;
+  }
+
+  /* Mobile Drawer Menu - Solid background with zero transparency */
+  #mobile-drawer {
+    background-color: var(--color-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  #menu-close-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.45rem !important;
+    border-radius: 4px !important;
+    color: var(--color-brand-charcoal) !important;
+    background-color: rgba(28, 27, 26, 0.06) !important;
+    border: 1px solid rgba(28, 27, 26, 0.12) !important;
+  }
+}
+
+/* Safe Area Inset Support for Modern Mobile Screens (Notches / Dynamic Island) */
+#main-header {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+
+

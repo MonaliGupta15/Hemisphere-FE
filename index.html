@@ -119,17 +119,50 @@
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-luxury font-medium">
-        <a href="#our-stays" class="hover:text-brand-gold transition-colors py-1">Stays</a>
-        <a href="#curated-pathways" class="hover:text-brand-gold transition-colors py-1">Experiences</a>
-        <a href="#featured-offers" class="hover:text-brand-gold transition-colors py-1">Offers</a>
-        <a href="#events-section" class="hover:text-brand-gold transition-colors py-1">Events</a>
-        <a href="#journal-section" class="hover:text-brand-gold transition-colors py-1">Journal</a>
+      <nav class="hidden lg:flex items-center space-x-7 text-xs uppercase tracking-luxury font-medium">
+        <div class="relative group">
+          <a href="stays.html" class="hover:text-brand-gold transition-colors py-2 flex items-center gap-1">
+            <span>Stays</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 group-hover:rotate-180 transition-transform"></i>
+          </a>
+          <div class="hidden group-hover:block absolute top-full left-0 pt-2 w-64 z-50">
+            <div class="bg-brand-charcoal border border-white/15 p-3 rounded-sm shadow-2xl space-y-1 text-left">
+              <a href="damai-beach-resort.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Damai Beach Resort</span>
+                <span class="text-[9px] text-white/50">Santubong Rainforest Sanctuary</span>
+              </a>
+              <a href="damai-lagoon-resort.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Damai Lagoon Resort</span>
+                <span class="text-[9px] text-white/50">Tranquil Coastal Lagoon & Spa</span>
+              </a>
+              <a href="grand-margherita.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Grand Margherita Hotel</span>
+                <span class="text-[9px] text-white/50">Historic Kuching Waterfront</span>
+              </a>
+              <a href="riverside-majestic.html" class="block px-3 py-2 text-[11px] normal-case text-white/90 hover:text-brand-gold hover:bg-white/5 rounded-sm transition-colors">
+                <span class="block font-medium">Riverside Majestic Hotel</span>
+                <span class="text-[9px] text-white/50">Puteri & Astana Wings</span>
+              </a>
+              <div class="pt-2 border-t border-white/10 mt-1">
+                <a href="stays.html" class="block px-3 py-1.5 text-[10px] uppercase tracking-luxury text-brand-gold hover:text-brand-sand transition-colors font-semibold">
+                  All Properties Overview →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="rooms.html" class="hover:text-brand-gold transition-colors py-1">Rooms</a>
+        <a href="dining.html" class="hover:text-brand-gold transition-colors py-1">Dining</a>
+        <a href="experiences.html" class="hover:text-brand-gold transition-colors py-1">Experiences</a>
+        <a href="offers.html" class="hover:text-brand-gold transition-colors py-1">Offers</a>
+        <a href="events.html" class="hover:text-brand-gold transition-colors py-1">Events</a>
+        <a href="gallery.html" class="hover:text-brand-gold transition-colors py-1">Gallery</a>
+        <a href="about.html" class="hover:text-brand-gold transition-colors py-1">About</a>
       </nav>
 
       <!-- Right Actions -->
       <div class="flex items-center space-x-3 sm:space-x-4">
-        <a href="#booking-section" class="px-5 py-2.5 text-xs uppercase tracking-luxury font-medium rounded-sm border border-white/50 text-white bg-black/20 backdrop-blur-sm hover:border-white hover:bg-white/20 transition-all duration-300">
+        <a href="#booking-section" class="header-book-btn px-5 py-2.5 text-xs uppercase tracking-luxury font-medium rounded-sm border border-white/50 text-white bg-black/20 backdrop-blur-sm hover:border-white hover:bg-white/20 transition-all duration-300">
           Book Now
         </a>
 
@@ -151,30 +184,33 @@
       </button>
     </div>
 
-    <div class="flex-1 px-8 py-10 flex flex-col justify-between">
-      <nav class="space-y-6">
+    <div class="flex-1 px-8 py-8 flex flex-col justify-between">
+      <nav class="space-y-5">
         <div>
           <button id="mobile-stays-toggle" type="button" class="w-full flex items-center justify-between text-2xl font-serif text-text-primary hover:text-brand-gold py-1 transition-colors text-left">
             <span>Stays</span>
             <i id="mobile-stays-chevron" data-lucide="chevron-down" class="w-5 h-5 text-text-muted transition-transform duration-300"></i>
           </button>
-          <div id="mobile-stays-submenu" class="hidden pl-4 pt-4 pb-2 space-y-3 border-l border-border/80 mt-2">
-            <a href="#our-stays" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Beach Resort</a>
-            <a href="#our-stays" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Lagoon Resort</a>
-            <a href="#our-stays" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Grand Margherita Hotel</a>
-            <a href="#our-stays" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Riverside Majestic (Puteri Wing)</a>
-            <a href="#our-stays" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Riverside Majestic (Astana Wing)</a>
+          <div id="mobile-stays-submenu" class="hidden pl-4 pt-3 pb-2 space-y-2.5 border-l border-border/80 mt-2">
+            <a href="damai-beach-resort.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Beach Resort</a>
+            <a href="damai-lagoon-resort.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Damai Lagoon Resort</a>
+            <a href="grand-margherita.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Grand Margherita Hotel</a>
+            <a href="riverside-majestic.html" class="block text-sm font-sans tracking-wide py-1 text-text-secondary hover:text-brand-gold">Riverside Majestic (Puteri & Astana)</a>
+            <a href="stays.html" class="block text-xs uppercase tracking-luxury text-brand-gold font-semibold pt-1">All Stays Overview →</a>
           </div>
         </div>
 
-        <a href="#curated-pathways" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Experiences</a>
-        <a href="#featured-offers" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Offers</a>
-        <a href="#events-section" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Events & Weddings</a>
-        <a href="#journal-section" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Hemisphere Journal</a>
-        <a href="#loyalty-section" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Loyalty Recognition</a>
+        <a href="rooms.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Rooms & Suites</a>
+        <a href="dining.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Dining & Bars</a>
+        <a href="experiences.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Experiences</a>
+        <a href="offers.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Offers & Packages</a>
+        <a href="events.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Events & Weddings</a>
+        <a href="gallery.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Gallery</a>
+        <a href="loyalty.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">Loyalty Recognition</a>
+        <a href="about.html" class="block text-2xl font-serif text-text-primary hover:text-brand-gold py-1">About & Contact</a>
       </nav>
 
-      <div class="pt-8 border-t border-border/80">
+      <div class="pt-6 border-t border-border/80">
         <a href="#booking-section" class="block w-full py-3.5 text-center bg-brand-charcoal text-white text-xs uppercase tracking-luxury font-medium rounded-sm shadow-md">
           Find Your Stay
         </a>
@@ -421,7 +457,7 @@
             <span class="text-xs uppercase tracking-luxury text-brand-gold font-medium block mb-2">The Portfolio</span>
             <h2 class="text-3xl sm:text-4xl font-serif text-text-primary">Five stays. Five ways to experience Sarawak.</h2>
           </div>
-          <a href="#booking-section" class="text-xs uppercase tracking-luxury font-medium text-text-primary hover:text-brand-gold inline-flex items-center gap-2">
+          <a href="stays.html" class="text-xs uppercase tracking-luxury font-medium text-text-primary hover:text-brand-gold inline-flex items-center gap-2">
             <span>Explore all stays</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i>
           </a>
@@ -449,7 +485,7 @@
                 <p class="text-xs text-text-secondary leading-relaxed mb-6">Secluded beachfront sanctuary nestled between Mount Santubong rainforest and the South China Sea.</p>
               </div>
               <div class="pt-4 border-t border-border-subtle flex items-center justify-between">
-                <a href="#booking-section" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5">View Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
+                <a href="damai-beach-resort.html" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5 font-medium">Explore Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
               </div>
             </div>
           </article>
@@ -467,7 +503,7 @@
                 <p class="text-xs text-text-secondary leading-relaxed mb-6">Tranquil coastal resort framed by calm lagoon waters, lush coastal flora, and panoramic sea horizons.</p>
               </div>
               <div class="pt-4 border-t border-border-subtle flex items-center justify-between">
-                <a href="#booking-section" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5">View Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
+                <a href="damai-lagoon-resort.html" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5 font-medium">Explore Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
               </div>
             </div>
           </article>
@@ -485,7 +521,7 @@
                 <p class="text-xs text-text-secondary leading-relaxed mb-6">Sarawak's pioneer international hotel situated commanding the scenic Kuching Waterfront.</p>
               </div>
               <div class="pt-4 border-t border-border-subtle flex items-center justify-between">
-                <a href="#booking-section" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5">View Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
+                <a href="grand-margherita.html" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5 font-medium">Explore Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
               </div>
             </div>
           </article>
@@ -503,7 +539,7 @@
                 <p class="text-xs text-text-secondary leading-relaxed mb-6">Prominent city center landmark offering sweeping vistas of the Sarawak River and historic Kuching.</p>
               </div>
               <div class="pt-4 border-t border-border-subtle flex items-center justify-between">
-                <a href="#booking-section" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5">View Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
+                <a href="riverside-majestic.html" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5 font-medium">Explore Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
               </div>
             </div>
           </article>
@@ -521,7 +557,7 @@
                 <p class="text-xs text-text-secondary leading-relaxed mb-6">Modern boutique hotel wing combining refined contemporary interiors with panoramic riverfront views.</p>
               </div>
               <div class="pt-4 border-t border-border-subtle flex items-center justify-between">
-                <a href="#booking-section" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5">View Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
+                <a href="riverside-majestic.html" class="text-xs uppercase tracking-luxury text-text-primary hover:text-brand-gold inline-flex items-center gap-1.5 font-medium">Explore Property <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-gold"></i></a>
               </div>
             </div>
           </article>
@@ -874,11 +910,11 @@
         <div class="lg:col-span-3 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Stays</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
-            <li><a href="#our-stays" class="hover:text-brand-gold transition-colors">Damai Beach Resort</a></li>
-            <li><a href="#our-stays" class="hover:text-brand-gold transition-colors">Damai Lagoon Resort</a></li>
-            <li><a href="#our-stays" class="hover:text-brand-gold transition-colors">Grand Margherita Hotel</a></li>
-            <li><a href="#our-stays" class="hover:text-brand-gold transition-colors">Riverside Majestic (Puteri)</a></li>
-            <li><a href="#our-stays" class="hover:text-brand-gold transition-colors">Riverside Majestic (Astana)</a></li>
+            <li><a href="damai-beach-resort.html" class="hover:text-brand-gold transition-colors">Damai Beach Resort</a></li>
+            <li><a href="damai-lagoon-resort.html" class="hover:text-brand-gold transition-colors">Damai Lagoon Resort</a></li>
+            <li><a href="grand-margherita.html" class="hover:text-brand-gold transition-colors">Grand Margherita Hotel</a></li>
+            <li><a href="riverside-majestic.html" class="hover:text-brand-gold transition-colors">Riverside Majestic (Puteri & Astana)</a></li>
+            <li><a href="stays.html" class="hover:text-brand-gold transition-colors font-medium text-brand-gold">All Stays Directory →</a></li>
           </ul>
         </div>
 
@@ -886,11 +922,13 @@
         <div class="lg:col-span-3 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">Explore</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
-            <li><a href="#curated-pathways" class="hover:text-brand-gold transition-colors">Curated Pathways</a></li>
-            <li><a href="#featured-offers" class="hover:text-brand-gold transition-colors">Privileges & Packages</a></li>
-            <li><a href="#events-section" class="hover:text-brand-gold transition-colors">Meetings & Weddings</a></li>
-            <li><a href="#journal-section" class="hover:text-brand-gold transition-colors">The Hemisphere Journal</a></li>
-            <li><a href="#loyalty-section" class="hover:text-brand-gold transition-colors">Hemisphere Loyalty</a></li>
+            <li><a href="rooms.html" class="hover:text-brand-gold transition-colors">Rooms & Suites</a></li>
+            <li><a href="dining.html" class="hover:text-brand-gold transition-colors">Dining & Bars</a></li>
+            <li><a href="experiences.html" class="hover:text-brand-gold transition-colors">Curated Pathways</a></li>
+            <li><a href="offers.html" class="hover:text-brand-gold transition-colors">Privileges & Packages</a></li>
+            <li><a href="events.html" class="hover:text-brand-gold transition-colors">Meetings & Weddings</a></li>
+            <li><a href="gallery.html" class="hover:text-brand-gold transition-colors">Media Gallery</a></li>
+            <li><a href="loyalty.html" class="hover:text-brand-gold transition-colors">Hemisphere Loyalty</a></li>
           </ul>
         </div>
 
@@ -898,9 +936,10 @@
         <div class="lg:col-span-2 space-y-3.5">
           <h4 class="text-[11px] uppercase tracking-luxury text-brand-gold font-medium">About</h4>
           <ul class="space-y-2 text-xs text-text-inverse/80 font-light">
-            <li><a href="#brand-intro" class="hover:text-brand-gold transition-colors">Our Philosophy</a></li>
-            <li><a href="#hero-section" class="hover:text-brand-gold transition-colors">Sarawak, Malaysia</a></li>
-            <li><a href="#booking-section" class="hover:text-brand-gold transition-colors">Contact & Reservations</a></li>
+            <li><a href="about.html" class="hover:text-brand-gold transition-colors">Our Philosophy</a></li>
+            <li><a href="about.html#sedc-heritage" class="hover:text-brand-gold transition-colors">SEDC Sarawak Heritage</a></li>
+            <li><a href="about.html#contact-directory" class="hover:text-brand-gold transition-colors">Contact & Directory</a></li>
+            <li><a href="#booking-section" class="hover:text-brand-gold transition-colors">Direct Reservations</a></li>
           </ul>
         </div>
       </div>
